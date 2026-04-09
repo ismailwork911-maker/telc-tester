@@ -39,56 +39,56 @@ const { useState, useMemo, useCallback, useRef } = React;
 // ===================== EXAM DATA =====================
 const EXAMS = [
 {
-  id: 1, title: "\u00dcbungstest 1", subtitle: "Disco / Leipzigerin / Wien",
+  id: 1, title: "Übungstest 1", subtitle: "Disco / Leipzigerin / Wien",
   leseverstehen: {
     teil1: {
-      instructions: "Lesen Sie die \u00dcberschriften a\u2013j und die Texte 1\u20135. Finden Sie f\u00fcr jeden Text die passende \u00dcberschrift.",
+      instructions: "Lesen Sie die Überschriften a–j und die Texte 1–5. Finden Sie für jeden Text die passende Überschrift.",
       headings: [
-        {letter:"A", text:"Angebot f\u00fcr Reisende: F\u00fcr wenig Geld \u00f6ffentliche Verkehrsmittel benutzen"},
+        {letter:"A", text:"Angebot für Reisende: Für wenig Geld öffentliche Verkehrsmittel benutzen"},
         {letter:"B", text:"Bildband: Babys im Garten"},
-        {letter:"C", text:"Ein Sch\u00fcler mit vielen Ideen"},
-        {letter:"D", text:"Fr\u00fch \u00fcbt sich: Hotels bieten Skikurse f\u00fcr Zweij\u00e4hrige an"},
-        {letter:"E", text:"Handbuch f\u00fcr Hobby-Fotografen"},
+        {letter:"C", text:"Ein Schüler mit vielen Ideen"},
+        {letter:"D", text:"Früh übt sich: Hotels bieten Skikurse für Zweijährige an"},
+        {letter:"E", text:"Handbuch für Hobby-Fotografen"},
         {letter:"F", text:"Neu: Mit dem Taxi gratis zur Disco"},
-        {letter:"G", text:"Neu: Taxi-Tickets f\u00fcr Discobesucher"},
+        {letter:"G", text:"Neu: Taxi-Tickets für Discobesucher"},
         {letter:"H", text:"Schulkinder schreiben spannende Geschichten"},
-        {letter:"I", text:"Skikurs f\u00fcr Eltern und Kinder"},
-        {letter:"J", text:"Stra\u00dfenbahn und Bus im Flugticket enthalten"}
+        {letter:"I", text:"Skikurs für Eltern und Kinder"},
+        {letter:"J", text:"Straßenbahn und Bus im Flugticket enthalten"}
       ],
       texts: [
-        "Ich m\u00f6chte, dass Menschen, die meine Fotos gesehen haben, von nun an die Welt mit anderen Augen betrachten. Das k\u00f6nnte der neuseel\u00e4ndischen Fotografin Anne Geddes gelingen. Denn die Bilder, die sie f\u00fcr das Buch \u2018Drunten im Garten\u2019 von den kleinen Menschenkindern gemacht hat, sind ungew\u00f6hnlich und wundersch\u00f6n: Babys auf Blumen, Bl\u00e4ttern, Beeren, verkleidet als Morcheln, Melonen oder Marienk\u00e4fer, Babys in Tulpen und als Schmetterlinge.",
-        "Die meisten Skikurse f\u00fcr Kinder beginnen im Alter von vier Jahren. Im K\u00e4rntner Baby-Dorf Trebesing ist das anders: Hier werden im Windel-Wedel-Camp bereits Kleinkinder ab zwei Jahren unterrichtet.",
-        "Berlins j\u00fcngster Schriftsteller hat deutlich mehr Texte verfasst als er Jahre z\u00e4hlt. Rund 50 Gedichte und Erz\u00e4hlungen tippte Daniel Story, 12, schon in seinen Computer. \u2018Ich schreibe fast, seitdem es mich gibt\u2019, sagt der Sechstkl\u00e4ssler.",
-        "Ob Sie privat oder gesch\u00e4ftlich unterwegs sind, mit dem Stadt-Ticket k\u00f6nnen Sie billig die \u00f6ffentlichen Verkehrsmittel nutzen. Voraussetzung: Sie sind mit dem Flugzeug oder der Deutschen Bahn (\u00fcber 100 km) angereist.",
-        "In Mecklenburg-Vorpommern k\u00f6nnen junge Leute jetzt f\u00fcr den halben Fahrpreis mit dem Taxi auf Discotour gehen. Tickets daf\u00fcr sind bei allen Gesch\u00e4ftsstellen der AOK sowie an Esso-Tankstellen erh\u00e4ltlich."
+        "Ich möchte, dass Menschen, die meine Fotos gesehen haben, von nun an die Welt mit anderen Augen betrachten. Das könnte der neuseeländischen Fotografin Anne Geddes gelingen. Denn die Bilder, die sie für das Buch ‘Drunten im Garten’ von den kleinen Menschenkindern gemacht hat, sind ungewöhnlich und wunderschön: Babys auf Blumen, Blättern, Beeren, verkleidet als Morcheln, Melonen oder Marienkäfer, Babys in Tulpen und als Schmetterlinge.",
+        "Die meisten Skikurse für Kinder beginnen im Alter von vier Jahren. Im Kärntner Baby-Dorf Trebesing ist das anders: Hier werden im Windel-Wedel-Camp bereits Kleinkinder ab zwei Jahren unterrichtet.",
+        "Berlins jüngster Schriftsteller hat deutlich mehr Texte verfasst als er Jahre zählt. Rund 50 Gedichte und Erzählungen tippte Daniel Story, 12, schon in seinen Computer. ‘Ich schreibe fast, seitdem es mich gibt’, sagt der Sechstklässler.",
+        "Ob Sie privat oder geschäftlich unterwegs sind, mit dem Stadt-Ticket können Sie billig die öffentlichen Verkehrsmittel nutzen. Voraussetzung: Sie sind mit dem Flugzeug oder der Deutschen Bahn (über 100 km) angereist.",
+        "In Mecklenburg-Vorpommern können junge Leute jetzt für den halben Fahrpreis mit dem Taxi auf Discotour gehen. Tickets dafür sind bei allen Geschäftsstellen der AOK sowie an Esso-Tankstellen erhältlich."
       ],
       options: ["A","B","C","D","E","F","G","H","I","J"],
       answers: ["B","D","C","A","G"]
     },
     teil2: {
-      instructions: "Lesen Sie den Text und die Aufgaben 6\u201310. Welche L\u00f6sung (a, b oder c) ist jeweils richtig?",
-      readingText: "Leipzigerin geht in den USA auf Sendung\n\nDrei Monate Praktikum f\u00fcr junge Sachsen im Land der unbegrenzten M\u00f6glichkeiten\n\nManchmal f\u00fchle ich mich wie ein Missionar, scherzt Ulrike Rudelt. Das Bild vom Deutschen, der Lederhosen tr\u00e4gt, Bier trinkt und Sauerkraut isst, h\u00e4lt sich ihrer Meinung nach in der \u00d6ffentlichkeit Amerikas ganz stark und wird vor allem in der Fernsehwerbung st\u00e4ndig wiederholt.\n\nAn der Uni in Monterey darf die Leipziger Studentin neben dem Hospitieren auch selbst unterrichten. Die Chancen, die ich jetzt habe, hatten meine Eltern nicht, sagt sie.\n\nEinen Vorgeschmack vom American Way of Life gab es bereits w\u00e4hrend des einw\u00f6chigen Einf\u00fchrungsseminars in New York. Auf dem Programm standen Ausfl\u00fcge, und dazu h\u00f6rten sie jede Menge Vortr\u00e4ge zum Welthandel, Kampf gegen Arbeitslosigkeit usw.\n\nAntje Kutzer hat es nach Los Angeles verschlagen. Nach dem Abitur hat sie Reiseverkehrskauffrau gelernt. Anfangs hatte ich gro\u00dfes Heimweh. Doch dann stellte ich mich der Chefin im besten Englisch vor, worauf sie auf Deutsch antwortete.\n\nDie drei Frauen z\u00e4hlen zu den 20 jungen Berufsanf\u00e4ngern aus Ostdeutschland, die unter 2100 Bewerbern ausgew\u00e4hlt wurden.",
+      instructions: "Lesen Sie den Text und die Aufgaben 6–10. Welche Lösung (a, b oder c) ist jeweils richtig?",
+      readingText: "Leipzigerin geht in den USA auf Sendung\n\nDrei Monate Praktikum für junge Sachsen im Land der unbegrenzten Möglichkeiten\n\nManchmal fühle ich mich wie ein Missionar, scherzt Ulrike Rudelt. Das Bild vom Deutschen, der Lederhosen trägt, Bier trinkt und Sauerkraut isst, hält sich ihrer Meinung nach in der Öffentlichkeit Amerikas ganz stark und wird vor allem in der Fernsehwerbung ständig wiederholt.\n\nAn der Uni in Monterey darf die Leipziger Studentin neben dem Hospitieren auch selbst unterrichten. Die Chancen, die ich jetzt habe, hatten meine Eltern nicht, sagt sie.\n\nEinen Vorgeschmack vom American Way of Life gab es bereits während des einwöchigen Einführungsseminars in New York. Auf dem Programm standen Ausflüge, und dazu hörten sie jede Menge Vorträge zum Welthandel, Kampf gegen Arbeitslosigkeit usw.\n\nAntje Kutzer hat es nach Los Angeles verschlagen. Nach dem Abitur hat sie Reiseverkehrskauffrau gelernt. Anfangs hatte ich großes Heimweh. Doch dann stellte ich mich der Chefin im besten Englisch vor, worauf sie auf Deutsch antwortete.\n\nDie drei Frauen zählen zu den 20 jungen Berufsanfängern aus Ostdeutschland, die unter 2100 Bewerbern ausgewählt wurden.",
       questions: [
-        {num:6, text:"Die Werbung in den Vereinigten Staaten...", options:["zeigt viele unterschiedliche Seiten von Deutschland.","besch\u00e4ftigt sich \u00fcberhaupt nicht mit Deutschland.","zeigt immer wieder dasselbe Bild von Deutschland."], answer:"c"},
-        {num:7, text:"Die Eltern von Ulrike Rudelt...", options:["arbeiten und lebten lange Jahre in den Niederlanden.","hatten nicht die M\u00f6glichkeiten wie ihre Tochter.","wollen ihre Tochter nun in den USA besuchen."], answer:"b"},
-        {num:8, text:"W\u00e4hrend die Praktikantinnen in New York waren...", options:["bekamen sie eine Stadtf\u00fchrung.","besuchten sie einen Sprachkurs.","wurden sie \u00fcber wichtige Themen informiert."], answer:"c"},
-        {num:9, text:"Die dritte Leipzigerin, die in die USA gereist ist...", options:["kommt eigentlich aus \u00d6sterreich.","wurde von ihrer neuen Chefin freundlich aufgenommen.","wollte dort ihr Abitur machen und dann studieren."], answer:"b"},
+        {num:6, text:"Die Werbung in den Vereinigten Staaten...", options:["zeigt viele unterschiedliche Seiten von Deutschland.","beschäftigt sich überhaupt nicht mit Deutschland.","zeigt immer wieder dasselbe Bild von Deutschland."], answer:"c"},
+        {num:7, text:"Die Eltern von Ulrike Rudelt...", options:["arbeiten und lebten lange Jahre in den Niederlanden.","hatten nicht die Möglichkeiten wie ihre Tochter.","wollen ihre Tochter nun in den USA besuchen."], answer:"b"},
+        {num:8, text:"Während die Praktikantinnen in New York waren...", options:["bekamen sie eine Stadtführung.","besuchten sie einen Sprachkurs.","wurden sie über wichtige Themen informiert."], answer:"c"},
+        {num:9, text:"Die dritte Leipzigerin, die in die USA gereist ist...", options:["kommt eigentlich aus Österreich.","wurde von ihrer neuen Chefin freundlich aufgenommen.","wollte dort ihr Abitur machen und dann studieren."], answer:"b"},
         {num:10, text:"Wer als Praktikantin ins Ausland geht...", options:["braucht schon einige Berufserfahrungen.","soll dabei vor allem das Land kennenlernen.","soll schon einmal im Ausland gewesen sein."], answer:"c"}
       ]
     },
     teil3: {
-      instructions: "Lesen Sie die Situationen 11\u201320 und die Anzeigen a\u2013l. Finden Sie f\u00fcr jede Situation die passende Anzeige. Markieren Sie x, wenn keine passt.",
+      instructions: "Lesen Sie die Situationen 11–20 und die Anzeigen a–l. Finden Sie für jede Situation die passende Anzeige. Markieren Sie x, wenn keine passt.",
       situations: [
-        {num:11, text:"Sie m\u00f6chten f\u00fcr ein Jahr in Wien Psychologie studieren und suchen eine g\u00fcnstige Mietwohnung."},
-        {num:12, text:"Sie m\u00f6chten am Abend ins Kino gehen und suchen eine verl\u00e4ssliche Person, die auf Ihr Kind aufpasst."},
-        {num:13, text:"Sie m\u00f6chten in den Sommerferien nebenbei ein wenig Geld dazu verdienen."},
-        {num:14, text:"Sie m\u00f6chten ein Geburtstagsfest organisieren und brauchen daf\u00fcr einen Raum."},
-        {num:15, text:"Ihre Bekannten aus Deutschland m\u00fcssen nach Salzburg umziehen und suchen eine Mietwohnung."},
-        {num:16, text:"Ihre 23-j\u00e4hrige Freundin hat einen Computerkurs abgeschlossen und sucht einen Job."},
-        {num:17, text:"Ihr 12-j\u00e4hriger Sohn w\u00fcnscht sich zum Geburtstag ein Buch \u00fcber Sterne."},
-        {num:18, text:"Ihre Kinder m\u00f6chten am Nachmittag ins Kino gehen. Sie suchen einen passenden Film f\u00fcr Kinder."},
-        {num:19, text:"Sie m\u00f6chten mit Freunden ins Kino gehen. Da es ein warmer Sommerabend ist, suchen Sie eine Vorstellung im Freien."},
-        {num:20, text:"Ihre Freundin ist Erzieherin und zur Zeit arbeitslos. Sie m\u00f6chte als Kinderm\u00e4dchen arbeiten."}
+        {num:11, text:"Sie möchten für ein Jahr in Wien Psychologie studieren und suchen eine günstige Mietwohnung."},
+        {num:12, text:"Sie möchten am Abend ins Kino gehen und suchen eine verlässliche Person, die auf Ihr Kind aufpasst."},
+        {num:13, text:"Sie möchten in den Sommerferien nebenbei ein wenig Geld dazu verdienen."},
+        {num:14, text:"Sie möchten ein Geburtstagsfest organisieren und brauchen dafür einen Raum."},
+        {num:15, text:"Ihre Bekannten aus Deutschland müssen nach Salzburg umziehen und suchen eine Mietwohnung."},
+        {num:16, text:"Ihre 23-jährige Freundin hat einen Computerkurs abgeschlossen und sucht einen Job."},
+        {num:17, text:"Ihr 12-jähriger Sohn wünscht sich zum Geburtstag ein Buch über Sterne."},
+        {num:18, text:"Ihre Kinder möchten am Nachmittag ins Kino gehen. Sie suchen einen passenden Film für Kinder."},
+        {num:19, text:"Sie möchten mit Freunden ins Kino gehen. Da es ein warmer Sommerabend ist, suchen Sie eine Vorstellung im Freien."},
+        {num:20, text:"Ihre Freundin ist Erzieherin und zur Zeit arbeitslos. Sie möchte als Kindermädchen arbeiten."}
       ],
       options: ["A","B","C","D","E","F","G","H","I","J","K","L","X"],
       answers: ["G","F","J","A","X","E","X","C","I","L"]
@@ -96,126 +96,126 @@ const EXAMS = [
   },
   sprachbausteine: {
     teil1: {
-      instructions: "Lesen Sie den Text und schlie\u00dfen Sie die L\u00fccken 21\u201330. Welche L\u00f6sung (a, b oder c) ist jeweils richtig?",
-      readingText: "Sehr geehrter Herr Meyerhofer,\n\nWie Sie wissen, miete ich nun schon seit drei Jahren eine Wohnung in (21) Haus. Ich (22) die ganze Zeit sehr zufrieden, denn im Haus war es immer ruhig, sauber und sicher. In der Zwischenzeit (23) sich die Wohnqualit\u00e4t durch die Er\u00f6ffnung des Restaurants im Erdgeschoss aber deutlich verschlechtert. (24) sp\u00e4t abends h\u00f6re ich nun t\u00e4glich (25) L\u00e4rm der Restaurantg\u00e4ste im Garten. Au\u00dferdem f\u00fchle ich mich (27) Haus nicht mehr sicher, weil das Restaurant oft die ganze Nacht (28) hat. Ich m\u00f6chte Sie dringend bitten, sich um diese (29) zu k\u00fcmmern. Vielleicht k\u00f6nnte (30) gemeinsam eine L\u00f6sung finden.\n\nMit freundlichen Gr\u00fc\u00dfen\nIhre Anneliese K\u00fchne",
+      instructions: "Lesen Sie den Text und schließen Sie die Lücken 21–30. Welche Lösung (a, b oder c) ist jeweils richtig?",
+      readingText: "Sehr geehrter Herr Meyerhofer,\n\nWie Sie wissen, miete ich nun schon seit drei Jahren eine Wohnung in (21) Haus. Ich (22) die ganze Zeit sehr zufrieden, denn im Haus war es immer ruhig, sauber und sicher. In der Zwischenzeit (23) sich die Wohnqualität durch die Eröffnung des Restaurants im Erdgeschoss aber deutlich verschlechtert. (24) spät abends höre ich nun täglich (25) Lärm der Restaurantgäste im Garten. Außerdem fühle ich mich (27) Haus nicht mehr sicher, weil das Restaurant oft die ganze Nacht (28) hat. Ich möchte Sie dringend bitten, sich um diese (29) zu kümmern. Vielleicht könnte (30) gemeinsam eine Lösung finden.\n\nMit freundlichen Grüßen\nIhre Anneliese Kühne",
       questions: [
         {num:21, text:"(21)", options:["Ihr","Ihrem","Ihren"], answer:"b"},
-        {num:22, text:"(22)", options:["war","w\u00e4re","w\u00fcrde"], answer:"a"},
+        {num:22, text:"(22)", options:["war","wäre","würde"], answer:"a"},
         {num:23, text:"(23)", options:["hat","ist","wurde"], answer:"a"},
         {num:24, text:"(24)", options:["Bis","Nach","Von"], answer:"a"},
         {num:25, text:"(25)", options:["dem","den","der"], answer:"b"},
         {num:26, text:"(26)", options:["denen","die","diese"], answer:"b"},
         {num:27, text:"(27)", options:["im","in","ins"], answer:"a"},
-        {num:28, text:"(28)", options:["ge\u00f6ffnet","\u00f6ffnen","\u00f6ffnet"], answer:"a"},
+        {num:28, text:"(28)", options:["geöffnet","öffnen","öffnet"], answer:"a"},
         {num:29, text:"(29)", options:["Problem","Probleme","Problemen"], answer:"b"},
         {num:30, text:"(30)", options:["er","man","wir"], answer:"b"}
       ]
     },
     teil2: {
-      instructions: "Lesen Sie den Text und schlie\u00dfen Sie die L\u00fccken 31\u201340. Benutzen Sie die W\u00f6rter (a\u2013o). Jedes Wort passt nur einmal.",
-      readingText: "Sehr geehrter Herr Blanco Ruiz,\n\nIch schreibe Ihnen auf die Anzeige, die (31) in der heutigen Bild-Zeitung aufgefallen ist. Da ich (32) einige Monate beruflich nach S\u00fcdamerika gehe, muss ich sehr schnell Spanisch lernen. F\u00fcr einen richtigen Sprachkurs habe ich leider (33) Zeit. Aber Ihre Methode interessiert mich, vor allem die Sprach\u00fcbungen (34) den CDs. Ich denke, damit k\u00f6nnte ich ganz (35). Ich arbeite (36) liebsten mit meinem PC. Sie schreiben, (37) Ihr Programm besonders die allt\u00e4gliche Kommunikation f\u00f6rdert. Wie lange wird es dauern, (38) ich mich mit meinen Gesch\u00e4ftsfreunden richtig unterhalten kann? Und wie viele Stunden (39) Woche sollte man mindestens \u00fcben? Ich (40) gerne ausprobieren, wie Ihre Methode funktioniert.\n\nMit freundlichen Gr\u00fc\u00dfen\nKarin \u00dcbersch\u00e4r",
-      wordBank: ["AM","BIS","DASS","F\u00dcR","GUTE","KEINE","MIT","MIR","M\u00d6CHTE","OHNE","PRO","W\u00c4HREND","W\u00c4RE","W\u00dcRDEN"],
+      instructions: "Lesen Sie den Text und schließen Sie die Lücken 31–40. Benutzen Sie die Wörter (a–o). Jedes Wort passt nur einmal.",
+      readingText: "Sehr geehrter Herr Blanco Ruiz,\n\nIch schreibe Ihnen auf die Anzeige, die (31) in der heutigen Bild-Zeitung aufgefallen ist. Da ich (32) einige Monate beruflich nach Südamerika gehe, muss ich sehr schnell Spanisch lernen. Für einen richtigen Sprachkurs habe ich leider (33) Zeit. Aber Ihre Methode interessiert mich, vor allem die Sprachübungen (34) den CDs. Ich denke, damit könnte ich ganz (35). Ich arbeite (36) liebsten mit meinem PC. Sie schreiben, (37) Ihr Programm besonders die alltägliche Kommunikation fördert. Wie lange wird es dauern, (38) ich mich mit meinen Geschäftsfreunden richtig unterhalten kann? Und wie viele Stunden (39) Woche sollte man mindestens üben? Ich (40) gerne ausprobieren, wie Ihre Methode funktioniert.\n\nMit freundlichen Grüßen\nKarin Überschär",
+      wordBank: ["AM","BIS","DASS","FÜR","GUTE","KEINE","MIT","MIR","MÖCHTE","OHNE","PRO","WÄHREND","WÄRE","WÜRDEN"],
       options: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"],
       questions: [{num:31},{num:32},{num:33},{num:34},{num:35},{num:36},{num:37},{num:38},{num:39},{num:40}],
       answers: ["H","D","F","I","E","A","C","B","L","J"],
-      answerWords: ["MIR","F\u00dcR","KEINE","MIT","GUTE","AM","DASS","BIS","PRO","M\u00d6CHTE"]
+      answerWords: ["MIR","FÜR","KEINE","MIT","GUTE","AM","DASS","BIS","PRO","MÖCHTE"]
     }
   },
   hoerverstehen: {
     teil1: {
-      instructions: "Entscheiden Sie, ob die Aussagen 41\u201345 richtig (+) oder falsch (\u2212) sind.",
-      note: "Audio nicht verf\u00fcgbar. Beantworten Sie die Fragen nach bestem Wissen.",
+      instructions: "Entscheiden Sie, ob die Aussagen 41–45 richtig (+) oder falsch (−) sind.",
+      note: "Audio nicht verfügbar. Beantworten Sie die Fragen nach bestem Wissen.",
       questions: [
-        {num:41, text:"Die Sprecherin w\u00fcnscht sich einen Arbeitsplatz f\u00fcr ihren Vater."},
-        {num:42, text:"Der Sprecher ist kein besonders guter Sch\u00fcler."},
-        {num:43, text:"Die Sprecherin m\u00f6chte nicht immer gest\u00f6rt werden."},
+        {num:41, text:"Die Sprecherin wünscht sich einen Arbeitsplatz für ihren Vater."},
+        {num:42, text:"Der Sprecher ist kein besonders guter Schüler."},
+        {num:43, text:"Die Sprecherin möchte nicht immer gestört werden."},
         {num:44, text:"Der Sprecher versteht sich nicht gut mit seiner Mutter."},
         {num:45, text:"Die Sprecherin ist am liebsten mit ihren Eltern zusammen."}
       ],
       answers: ["-","+","+","+","-"]
     },
     teil2: {
-      instructions: "Entscheiden Sie, ob die Aussagen 46\u201355 richtig (+) oder falsch (\u2212) sind.",
-      note: "Audio nicht verf\u00fcgbar.",
+      instructions: "Entscheiden Sie, ob die Aussagen 46–55 richtig (+) oder falsch (−) sind.",
+      note: "Audio nicht verfügbar.",
       questions: [
-        {num:46, text:"Frau Sch\u00e4fer hat von dem Verein kurz nach der Gr\u00fcndung geh\u00f6rt."},
+        {num:46, text:"Frau Schäfer hat von dem Verein kurz nach der Gründung gehört."},
         {num:47, text:"Die Mitglieder des Vereins kommen aus ganz Deutschland."},
-        {num:48, text:"Die Mitglieder des Vereins wissen \u00fcber Hausarbeit gut Bescheid."},
+        {num:48, text:"Die Mitglieder des Vereins wissen über Hausarbeit gut Bescheid."},
         {num:49, text:"Im Verein werden oft Feste gefeiert."},
         {num:50, text:"Der Verein bietet auch die Organisation von Festen an."},
-        {num:51, text:"Der Verein vermittelt Senioren, die tags\u00fcber Kinder betreuen."},
-        {num:52, text:"Laut Frau Sch\u00e4fer vertrauen viele Familien den Mitarbeiterinnen des Vereins."},
+        {num:51, text:"Der Verein vermittelt Senioren, die tagsüber Kinder betreuen."},
+        {num:52, text:"Laut Frau Schäfer vertrauen viele Familien den Mitarbeiterinnen des Vereins."},
         {num:53, text:"Vereinsmitglied kann nur werden, wer einen Beruf gelernt hat."},
-        {num:54, text:"Die Mitarbeiterinnen bekommen f\u00fcr ihre Arbeiten 10 Euro pro Stunde."},
-        {num:55, text:"Kunden mit wenig Geld zahlen f\u00fcr den Service nichts."}
+        {num:54, text:"Die Mitarbeiterinnen bekommen für ihre Arbeiten 10 Euro pro Stunde."},
+        {num:55, text:"Kunden mit wenig Geld zahlen für den Service nichts."}
       ],
       answers: ["-","-","+","-","+","+","+","+","-","-"]
     },
     teil3: {
-      instructions: "Entscheiden Sie, ob die Aussagen 56\u201360 richtig (+) oder falsch (\u2212) sind.",
-      note: "Audio nicht verf\u00fcgbar.",
+      instructions: "Entscheiden Sie, ob die Aussagen 56–60 richtig (+) oder falsch (−) sind.",
+      note: "Audio nicht verfügbar.",
       questions: [
         {num:56, text:"Sie sollen um 19:30 Uhr bei Georg und Claudia sein."},
-        {num:57, text:"Im s\u00fcdlichen \u00d6sterreich ist es tags\u00fcber sonnig, sp\u00e4ter windig und regnerisch."},
+        {num:57, text:"Im südlichen Österreich ist es tagsüber sonnig, später windig und regnerisch."},
         {num:58, text:"Der Speisewagen befindet sich im hinteren Teil des Zuges."},
-        {num:59, text:"Die Schweizer geben f\u00fcr Urlaub mehr Geld aus als f\u00fcr ihre Gesundheit."},
-        {num:60, text:"Der S\u00e4nger beginnt seine Konzertreise mit einer Vorstellung in Wien."}
+        {num:59, text:"Die Schweizer geben für Urlaub mehr Geld aus als für ihre Gesundheit."},
+        {num:60, text:"Der Sänger beginnt seine Konzertreise mit einer Vorstellung in Wien."}
       ],
       answers: ["-","+","-","-","+"]
     }
   }
 },
 {
-  id: 2, title: "\u00dcbungstest 2", subtitle: "Lachen / Schlafgeheimnisse",
+  id: 2, title: "Übungstest 2", subtitle: "Lachen / Schlafgeheimnisse",
   leseverstehen: {
     teil1: {
-      instructions: "Lesen Sie die \u00dcberschriften a\u2013j und die Texte 1\u20135.",
+      instructions: "Lesen Sie die Überschriften a–j und die Texte 1–5.",
       headings: [
-        {letter:"A", text:"Zufriedenheit im Job sch\u00fctzt vor Stress"},
-        {letter:"B", text:"Erfolgreiche M\u00e4nner k\u00f6nnen auch gute V\u00e4ter sein"},
-        {letter:"C", text:"Keiner lacht so fr\u00f6hlich wie der Weihnachtsmann"},
-        {letter:"D", text:"Wie M\u00e4nner und Frauen lachen"},
-        {letter:"E", text:"Weniger Arbeit \u2013 weniger Stress"},
-        {letter:"F", text:"Schlechte Nachrichten? Sagen Sie es mit einem L\u00e4cheln"},
-        {letter:"G", text:"Der Beruf ist f\u00fcr M\u00e4nner wichtiger als die Familie"},
-        {letter:"H", text:"Auch \u00e4ltere Menschen leiden unter Stress"},
-        {letter:"I", text:"Frauen reagieren besser auf schlechte Nachrichten als M\u00e4nner"},
-        {letter:"J", text:"Mit 70 Jahren macht das Leben am meisten Spa\u00df"}
+        {letter:"A", text:"Zufriedenheit im Job schützt vor Stress"},
+        {letter:"B", text:"Erfolgreiche Männer können auch gute Väter sein"},
+        {letter:"C", text:"Keiner lacht so fröhlich wie der Weihnachtsmann"},
+        {letter:"D", text:"Wie Männer und Frauen lachen"},
+        {letter:"E", text:"Weniger Arbeit – weniger Stress"},
+        {letter:"F", text:"Schlechte Nachrichten? Sagen Sie es mit einem Lächeln"},
+        {letter:"G", text:"Der Beruf ist für Männer wichtiger als die Familie"},
+        {letter:"H", text:"Auch ältere Menschen leiden unter Stress"},
+        {letter:"I", text:"Frauen reagieren besser auf schlechte Nachrichten als Männer"},
+        {letter:"J", text:"Mit 70 Jahren macht das Leben am meisten Spaß"}
       ],
       texts: [
-        "Frauen lachen auf viele Arten. Sie kichern, glucksen und manchmal singen sie fast. Bei M\u00e4nnern dagegen kommt das viel seltener vor.",
-        "Viel Arbeit, viel Stress? Wer viel arbeitet, muss nicht unbedingt gestresst sein. Vor Stress sch\u00fctzen laut Studie ein angenehmes Betriebsklima.",
-        "Ein neues Buch zeigt, wie M\u00e4nner F\u00e4higkeiten aus dem Arbeitsleben auf die Erziehung \u00fcbertragen k\u00f6nnen und so zu erfolgreichen V\u00e4tern werden.",
-        "Eine Studie der Universit\u00e4t Essex hat ergeben, dass wir mit siebzig Jahren am gl\u00fccklichsten sind.",
-        "Warum bleiben manche Managerinnen erfolgreich, obwohl sie Nachrichten mitteilen, die ihr Publikum lieber nicht h\u00f6ren m\u00f6chte? Sie verkaufen die schlechte Nachricht mit Humor."
+        "Frauen lachen auf viele Arten. Sie kichern, glucksen und manchmal singen sie fast. Bei Männern dagegen kommt das viel seltener vor.",
+        "Viel Arbeit, viel Stress? Wer viel arbeitet, muss nicht unbedingt gestresst sein. Vor Stress schützen laut Studie ein angenehmes Betriebsklima.",
+        "Ein neues Buch zeigt, wie Männer Fähigkeiten aus dem Arbeitsleben auf die Erziehung übertragen können und so zu erfolgreichen Vätern werden.",
+        "Eine Studie der Universität Essex hat ergeben, dass wir mit siebzig Jahren am glücklichsten sind.",
+        "Warum bleiben manche Managerinnen erfolgreich, obwohl sie Nachrichten mitteilen, die ihr Publikum lieber nicht hören möchte? Sie verkaufen die schlechte Nachricht mit Humor."
       ],
       options: ["A","B","C","D","E","F","G","H","I","J"],
       answers: ["D","A","B","J","F"]
     },
     teil2: {
-      instructions: "Lesen Sie den Text und die Aufgaben 6\u201310.",
-      readingText: "Geheimnisse des Schlafes \u2013 Schlafst\u00f6rungen \u2013 die meisten Ursachen sind harmlos\n\nLange Zeit hat man geglaubt, dass der Schlaf nur so etwas ist wie der kleine Bruder des Todes. Erst in den 50er Jahren des letzten Jahrhunderts fand man heraus, dass Schlafen etwas sehr Aktives ist. Der Schweizer Schlafforscher Alexander Borbely hat diesen Vorgang mit einer Treppe verglichen.\n\nZun\u00e4chst sind wir wach, dann schlafen wir ein und gehen bis tief hinab in den Keller. Danach geht es wieder hoch in einen leichten Schlaf mit lebhaften Tr\u00e4umen (REM-Schlaf).\n\nErwiesen ist: Wir brauchen ihn zur k\u00f6rperlichen Erholung. Tats\u00e4chlich klagen viele Menschen in den westlichen Industrienationen \u00fcber Schlafst\u00f6rungen. Eine echte Schlafst\u00f6rung liegt erst dann vor, wenn unsere Leistungsf\u00e4higkeit auf Dauer stark beeintr\u00e4chtigt wird.",
+      instructions: "Lesen Sie den Text und die Aufgaben 6–10.",
+      readingText: "Geheimnisse des Schlafes – Schlafstörungen – die meisten Ursachen sind harmlos\n\nLange Zeit hat man geglaubt, dass der Schlaf nur so etwas ist wie der kleine Bruder des Todes. Erst in den 50er Jahren des letzten Jahrhunderts fand man heraus, dass Schlafen etwas sehr Aktives ist. Der Schweizer Schlafforscher Alexander Borbely hat diesen Vorgang mit einer Treppe verglichen.\n\nZunächst sind wir wach, dann schlafen wir ein und gehen bis tief hinab in den Keller. Danach geht es wieder hoch in einen leichten Schlaf mit lebhaften Träumen (REM-Schlaf).\n\nErwiesen ist: Wir brauchen ihn zur körperlichen Erholung. Tatsächlich klagen viele Menschen in den westlichen Industrienationen über Schlafstörungen. Eine echte Schlafstörung liegt erst dann vor, wenn unsere Leistungsfähigkeit auf Dauer stark beeinträchtigt wird.",
       questions: [
-        {num:6, text:"Der Schweizer Schlafforscher Alexander Borbely...", options:["behauptet, dass der gesunde Schlaf gleichm\u00e4\u00dfig ist.","besch\u00e4ftigt sich seit 50 Jahren mit dem Thema Schlaf.","meint, dass es beim Schlaf verschiedene Stufen gibt."], answer:"c"},
-        {num:7, text:"W\u00e4hrend der Leichtschlafphase...", options:["erholt man sich nicht gut.","tr\u00e4umt man besonders viel.","wacht man \u00f6fter auf."], answer:"b"},
-        {num:8, text:"Die Wissenschaft ist heute der Meinung, dass...", options:["alle Probleme des Schlafes gel\u00f6st sind.","der Schlaf der k\u00f6rperlichen Erholung dient.","man durch Schlafen viel Zeit verliert."], answer:"b"},
-        {num:9, text:"Vor allem die Menschen in westlichen L\u00e4ndern...", options:["klagen dar\u00fcber, dass sie schlecht schlafen k\u00f6nnen.","k\u00f6nnen ohne Sorgen schlafen.","werden beim Schlafen gelegentlich gest\u00f6rt."], answer:"a"},
-        {num:10, text:"Zum Arzt sollen die Menschen gehen, die...", options:["l\u00e4ngere Zeit sehr schlecht schlafen.","manchmal nachts aufwachen.","zu viel und zu lange schlafen."], answer:"a"}
+        {num:6, text:"Der Schweizer Schlafforscher Alexander Borbely...", options:["behauptet, dass der gesunde Schlaf gleichmäßig ist.","beschäftigt sich seit 50 Jahren mit dem Thema Schlaf.","meint, dass es beim Schlaf verschiedene Stufen gibt."], answer:"c"},
+        {num:7, text:"Während der Leichtschlafphase...", options:["erholt man sich nicht gut.","träumt man besonders viel.","wacht man öfter auf."], answer:"b"},
+        {num:8, text:"Die Wissenschaft ist heute der Meinung, dass...", options:["alle Probleme des Schlafes gelöst sind.","der Schlaf der körperlichen Erholung dient.","man durch Schlafen viel Zeit verliert."], answer:"b"},
+        {num:9, text:"Vor allem die Menschen in westlichen Ländern...", options:["klagen darüber, dass sie schlecht schlafen können.","können ohne Sorgen schlafen.","werden beim Schlafen gelegentlich gestört."], answer:"a"},
+        {num:10, text:"Zum Arzt sollen die Menschen gehen, die...", options:["längere Zeit sehr schlecht schlafen.","manchmal nachts aufwachen.","zu viel und zu lange schlafen."], answer:"a"}
       ]
     },
     teil3: {
-      instructions: "Lesen Sie die Situationen 11\u201320 und die Anzeigen a\u2013l.",
+      instructions: "Lesen Sie die Situationen 11–20 und die Anzeigen a–l.",
       situations: [
-        {num:11, text:"Ihr Bekannter ist Sportlehrer und sucht eine Nebenbesch\u00e4ftigung in einem Verein."},
+        {num:11, text:"Ihr Bekannter ist Sportlehrer und sucht eine Nebenbeschäftigung in einem Verein."},
         {num:12, text:"Ein guter Bekannter (39) sucht eine Partnerin. Er ist reiselustig."},
-        {num:13, text:"Ihre Freundin ist besonders h\u00fcbsch, Studentin und sucht f\u00fcr die Semesterferien einen Job."},
-        {num:14, text:"Sie suchen f\u00fcr das kommende Wochenende eine Konzertkarte."},
-        {num:15, text:"Ihre 30-j\u00e4hrige Freundin hat in einem Hotel in Spanien gearbeitet und sucht \u00e4hnliche Arbeit."},
-        {num:16, text:"Ihre 55-j\u00e4hrige Nachbarin sucht jemanden zum Reisen und f\u00fcr klassische Konzerte."},
-        {num:17, text:"Sie m\u00f6chten lernen, wie Sie kleinere Reparaturen an Ihrem Auto selbst machen k\u00f6nnen."},
+        {num:13, text:"Ihre Freundin ist besonders hübsch, Studentin und sucht für die Semesterferien einen Job."},
+        {num:14, text:"Sie suchen für das kommende Wochenende eine Konzertkarte."},
+        {num:15, text:"Ihre 30-jährige Freundin hat in einem Hotel in Spanien gearbeitet und sucht ähnliche Arbeit."},
+        {num:16, text:"Ihre 55-jährige Nachbarin sucht jemanden zum Reisen und für klassische Konzerte."},
+        {num:17, text:"Sie möchten lernen, wie Sie kleinere Reparaturen an Ihrem Auto selbst machen können."},
         {num:18, text:"Die Tochter Ihrer russischen Bekannten sucht eine Au-pair-Stelle. Sie ist erst 18 Jahre alt."},
-        {num:19, text:"Ihre 21-j\u00e4hrige Bekannte sucht eine Stelle als Kinderg\u00e4rtnerin."},
-        {num:20, text:"Eine Freundin braucht Ratschl\u00e4ge, wie sie erfolgreich eine neue Arbeit finden kann."}
+        {num:19, text:"Ihre 21-jährige Bekannte sucht eine Stelle als Kindergärtnerin."},
+        {num:20, text:"Eine Freundin braucht Ratschläge, wie sie erfolgreich eine neue Arbeit finden kann."}
       ],
       options: ["A","B","C","D","E","F","G","H","I","J","K","L","X"],
       answers: ["E","F","H","X","C","A","K","X","I","B"]
@@ -223,12 +223,12 @@ const EXAMS = [
   },
   sprachbausteine: {
     teil1: {
-      instructions: "Lesen Sie den Text und schlie\u00dfen Sie die L\u00fccken 21\u201330.",
-      readingText: "Herr Buschhaus \u2013 COMPUTER-MAGAZIN \u2013 K\u00fcndigung vom 15. Mai\n\nSehr geehrter Herr Buschhaus,\n\nschade, (21) Sie CHIP nicht weiter beziehen (22). Die Belieferung beenden wir mit unserem (23) Heft. Sie erhalten die folgende Ausgabe nicht (24). Wir (25) Sie nur ungern als Abonnenten und w\u00fcrden uns freuen, wenn Sie CHIP (26) ab und zu am Kiosk kaufen. Vielleicht gelingt es uns, (27) wieder von der Qualit\u00e4t zu \u00fcberzeugen. (28) Sie noch Fragen haben, stehen wir unter (29) Nummer 0781/639 6259 zur Verf\u00fcgung.\n\nMit (30) Gr\u00fc\u00dfen\nIhr CHIP-Aboservice",
+      instructions: "Lesen Sie den Text und schließen Sie die Lücken 21–30.",
+      readingText: "Herr Buschhaus – COMPUTER-MAGAZIN – Kündigung vom 15. Mai\n\nSehr geehrter Herr Buschhaus,\n\nschade, (21) Sie CHIP nicht weiter beziehen (22). Die Belieferung beenden wir mit unserem (23) Heft. Sie erhalten die folgende Ausgabe nicht (24). Wir (25) Sie nur ungern als Abonnenten und würden uns freuen, wenn Sie CHIP (26) ab und zu am Kiosk kaufen. Vielleicht gelingt es uns, (27) wieder von der Qualität zu überzeugen. (28) Sie noch Fragen haben, stehen wir unter (29) Nummer 0781/639 6259 zur Verfügung.\n\nMit (30) Grüßen\nIhr CHIP-Aboservice",
       questions: [
         {num:21, text:"(21)", options:["darum","dass","weil"], answer:"b"},
-        {num:22, text:"(22)", options:["m\u00f6chte","m\u00f6chten","m\u00f6chtest"], answer:"b"},
-        {num:23, text:"(23)", options:["n\u00e4chste","n\u00e4chsten","n\u00e4chstes"], answer:"b"},
+        {num:22, text:"(22)", options:["möchte","möchten","möchtest"], answer:"b"},
+        {num:23, text:"(23)", options:["nächste","nächsten","nächstes"], answer:"b"},
         {num:24, text:"(24)", options:["mehr","nur","noch"], answer:"a"},
         {num:25, text:"(25)", options:["verlieren","verliert","verloren"], answer:"a"},
         {num:26, text:"(26)", options:["obwohl","trotz","trotzdem"], answer:"b"},
@@ -239,115 +239,115 @@ const EXAMS = [
       ]
     },
     teil2: {
-      instructions: "Lesen Sie den Text und schlie\u00dfen Sie die L\u00fccken 31\u201340.",
-      readingText: "Sehr geehrter Herr Maier,\n\nich habe Ihre Anzeige in der Zeitung vom letzten (31) gelesen und interessiere mich sehr (32) das Angebot. Ich (33) mit meiner Mutter und ihrer Schwester einige (34) Urlaub machen. Ist die Benutzung des Hallenbads im Preis enthalten oder (35) wir diese extra bezahlen? W\u00fcrde mich interessieren, (36) Pensionisten eine Erm\u00e4\u00dfigung bekommen. Sie schreiben dar\u00fcber leider (37) in Ihrer Anzeige. (38) m\u00f6chte ich wissen, ob man Wanderungen unternehmen kann. Ich w\u00e4re Ihnen sehr dankbar, (39) Sie mir Informationen zukommen lassen k\u00f6nnten.\n\nIch bedanke mich im (40) f\u00fcr die Informationen.",
-      wordBank: ["AUSSERDEM","D\u00dcRFEN","ERSTENS","F\u00dcR","KEINES","M\u00d6CHTE","M\u00dcSSEN","NICHTS","OB","OBWOHL","TAGE","\u00dcBER","VORAUS","WENN","WOCHENENDE"],
+      instructions: "Lesen Sie den Text und schließen Sie die Lücken 31–40.",
+      readingText: "Sehr geehrter Herr Maier,\n\nich habe Ihre Anzeige in der Zeitung vom letzten (31) gelesen und interessiere mich sehr (32) das Angebot. Ich (33) mit meiner Mutter und ihrer Schwester einige (34) Urlaub machen. Ist die Benutzung des Hallenbads im Preis enthalten oder (35) wir diese extra bezahlen? Würde mich interessieren, (36) Pensionisten eine Ermäßigung bekommen. Sie schreiben darüber leider (37) in Ihrer Anzeige. (38) möchte ich wissen, ob man Wanderungen unternehmen kann. Ich wäre Ihnen sehr dankbar, (39) Sie mir Informationen zukommen lassen könnten.\n\nIch bedanke mich im (40) für die Informationen.",
+      wordBank: ["AUSSERDEM","DÜRFEN","ERSTENS","FÜR","KEINES","MÖCHTE","MÜSSEN","NICHTS","OB","OBWOHL","TAGE","ÜBER","VORAUS","WENN","WOCHENENDE"],
       options: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"],
       questions: [{num:31},{num:32},{num:33},{num:34},{num:35},{num:36},{num:37},{num:38},{num:39},{num:40}],
       answers: ["O","D","F","K","G","I","H","A","N","M"],
-      answerWords: ["WOCHENENDE","F\u00dcR","M\u00d6CHTE","TAGE","M\u00dcSSEN","OB","NICHTS","AUSSERDEM","WENN","VORAUS"]
+      answerWords: ["WOCHENENDE","FÜR","MÖCHTE","TAGE","MÜSSEN","OB","NICHTS","AUSSERDEM","WENN","VORAUS"]
     }
   },
   hoerverstehen: {
-    teil1: {instructions:"Entscheiden Sie, ob die Aussagen 41\u201345 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:41,text:"Herr Pawliczek erledigt alle seine Eink\u00e4ufe im Internet."},{num:42,text:"Frau Zimmermann legt beim Einkaufen gro\u00dfen Wert auf pers\u00f6nlichen Kontakt."},{num:43,text:"Frau Schmidt findet zu Hause nicht genug Ruhe zum Online-Einkaufen."},{num:44,text:"Frau Ruttnigg ist vom Einkaufen im Internet nicht \u00fcberzeugt."},{num:45,text:"Herr Krause kauft seine Medikamente am liebsten in der n\u00e4chsten Stadt."}],
+    teil1: {instructions:"Entscheiden Sie, ob die Aussagen 41–45 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:41,text:"Herr Pawliczek erledigt alle seine Einkäufe im Internet."},{num:42,text:"Frau Zimmermann legt beim Einkaufen großen Wert auf persönlichen Kontakt."},{num:43,text:"Frau Schmidt findet zu Hause nicht genug Ruhe zum Online-Einkaufen."},{num:44,text:"Frau Ruttnigg ist vom Einkaufen im Internet nicht überzeugt."},{num:45,text:"Herr Krause kauft seine Medikamente am liebsten in der nächsten Stadt."}],
       answers:["+","-","+","-","-"]},
-    teil2: {instructions:"Entscheiden Sie, ob die Aussagen 46\u201355 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:46,text:"Herr Thurnherr ist Chef in einem gro\u00dfen Reiseb\u00fcro in Bern."},{num:47,text:"J\u00e4hrlich wollen \u00fcber 100 Personen eine Ausbildung in einem Reiseb\u00fcro machen."},{num:48,text:"W\u00e4hrend der Ausbildung kann man noch keine Studienreisen machen."},{num:49,text:"Herr Thurnherr meint, die Arbeit in einem Reiseb\u00fcro sei anstrengend."},{num:50,text:"In einem Reiseb\u00fcro muss man oft \u00dcberstunden machen."},{num:51,text:"In einem Reiseb\u00fcro verdient man gut."},{num:52,text:"Auf Studienreisen besichtigt man viele Hotels."},{num:53,text:"Im schriftlichen Teil des Tests wird vor allem politisches Wissen gepr\u00fcft."},{num:54,text:"J\u00e4hrlich k\u00f6nnen 50 Jugendliche an einem Eignungstest teilnehmen."},{num:55,text:"Das Reiseb\u00fcro muss f\u00fcr die Fehler der Mitarbeitenden bezahlen."}],
+    teil2: {instructions:"Entscheiden Sie, ob die Aussagen 46–55 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:46,text:"Herr Thurnherr ist Chef in einem großen Reisebüro in Bern."},{num:47,text:"Jährlich wollen über 100 Personen eine Ausbildung in einem Reisebüro machen."},{num:48,text:"Während der Ausbildung kann man noch keine Studienreisen machen."},{num:49,text:"Herr Thurnherr meint, die Arbeit in einem Reisebüro sei anstrengend."},{num:50,text:"In einem Reisebüro muss man oft Überstunden machen."},{num:51,text:"In einem Reisebüro verdient man gut."},{num:52,text:"Auf Studienreisen besichtigt man viele Hotels."},{num:53,text:"Im schriftlichen Teil des Tests wird vor allem politisches Wissen geprüft."},{num:54,text:"Jährlich können 50 Jugendliche an einem Eignungstest teilnehmen."},{num:55,text:"Das Reisebüro muss für die Fehler der Mitarbeitenden bezahlen."}],
       answers:["+","+","-","+","+","-","+","-","-","+"]},
-    teil3: {instructions:"Entscheiden Sie, ob die Aussagen 56\u201360 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:56,text:"Sie m\u00fcssen in Ingolstadt die Regionalbahn nehmen."},{num:57,text:"Clara kann wegen einer Pr\u00fcfung die Theaterkarten nicht abholen."},{num:58,text:"Im Schwarzwald k\u00f6nnen die Stra\u00dfen morgen glatt werden."},{num:59,text:"Der Liederabend findet zu einem sp\u00e4teren Termin statt."},{num:60,text:"Im Untergeschoss gibt es Winterkleidung zum halben Preis."}],
+    teil3: {instructions:"Entscheiden Sie, ob die Aussagen 56–60 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:56,text:"Sie müssen in Ingolstadt die Regionalbahn nehmen."},{num:57,text:"Clara kann wegen einer Prüfung die Theaterkarten nicht abholen."},{num:58,text:"Im Schwarzwald können die Straßen morgen glatt werden."},{num:59,text:"Der Liederabend findet zu einem späteren Termin statt."},{num:60,text:"Im Untergeschoss gibt es Winterkleidung zum halben Preis."}],
       answers:["-","-","-","+","+"]}
   }
 },
 {
-  id: 3, title: "\u00dcbungstest 3", subtitle: "Arbeitsplatz / Die Maus",
+  id: 3, title: "Übungstest 3", subtitle: "Arbeitsplatz / Die Maus",
   leseverstehen: {
-    teil1: {instructions:"Lesen Sie die \u00dcberschriften a\u2013j und die Texte 1\u20135.",
-      headings:[{letter:"A",text:"Arbeitsplatz: Bezahlung wichtiger als Zufriedenheit"},{letter:"B",text:"Ausstellungser\u00f6ffnung an bayerischem Gymnasium"},{letter:"C",text:"Frauen: mehr Spa\u00df am Beruf als M\u00e4nner"},{letter:"D",text:"Gr\u00fcnde f\u00fcr Zufriedenheit am Arbeitsplatz"},{letter:"E",text:"Immer mehr Teilzeitarbeitspl\u00e4tze f\u00fcr M\u00e4nner"},{letter:"F",text:"Karriere ist M\u00e4nnern weniger wichtig als Frauen"},{letter:"G",text:"Technik f\u00fcr Kleinkinder"},{letter:"H",text:"Technisches Museum vergibt Umwelt- und Technikpreis"},{letter:"I",text:"Umwelt- und Technikpreis"},{letter:"J",text:"W\u00fcnsche von berufst\u00e4tigen Eltern"}],
-      texts:["Eine aktuelle Umfrage der Arbeiterkammer unter berufst\u00e4tigen Eltern zeigt den dringenden Wunsch nach flexiblen Arbeitszeiten (60%) und nach Kinderg\u00e4rten im Betrieb (58%).","M\u00dcNCHEN: Sch\u00fcler an bayerischen Gymnasien k\u00f6nnen sich um den Umwelt- und Technikpreis bewerben.","WIEN: Eine einmalige Abteilung f\u00fcr drei- bis sechsj\u00e4hrige Kinder wurde im Technischen Museum er\u00f6ffnet.","HAMBURG: M\u00e4nner haben mehr Karrierechancen, Frauen daf\u00fcr mehr Freude am Beruf. 61% der weiblichen Arbeitnehmer geben an, dass ihre Arbeit ihnen Spa\u00df macht.","F\u00fcr Zufriedenheit am Arbeitsplatz kann Geld allein nicht entscheidend sein. Die Arbeit muss Spa\u00df machen."],
+    teil1: {instructions:"Lesen Sie die Überschriften a–j und die Texte 1–5.",
+      headings:[{letter:"A",text:"Arbeitsplatz: Bezahlung wichtiger als Zufriedenheit"},{letter:"B",text:"Ausstellungseröffnung an bayerischem Gymnasium"},{letter:"C",text:"Frauen: mehr Spaß am Beruf als Männer"},{letter:"D",text:"Gründe für Zufriedenheit am Arbeitsplatz"},{letter:"E",text:"Immer mehr Teilzeitarbeitsplätze für Männer"},{letter:"F",text:"Karriere ist Männern weniger wichtig als Frauen"},{letter:"G",text:"Technik für Kleinkinder"},{letter:"H",text:"Technisches Museum vergibt Umwelt- und Technikpreis"},{letter:"I",text:"Umwelt- und Technikpreis"},{letter:"J",text:"Wünsche von berufstätigen Eltern"}],
+      texts:["Eine aktuelle Umfrage der Arbeiterkammer unter berufstätigen Eltern zeigt den dringenden Wunsch nach flexiblen Arbeitszeiten (60%) und nach Kindergärten im Betrieb (58%).","MÜNCHEN: Schüler an bayerischen Gymnasien können sich um den Umwelt- und Technikpreis bewerben.","WIEN: Eine einmalige Abteilung für drei- bis sechsjährige Kinder wurde im Technischen Museum eröffnet.","HAMBURG: Männer haben mehr Karrierechancen, Frauen dafür mehr Freude am Beruf. 61% der weiblichen Arbeitnehmer geben an, dass ihre Arbeit ihnen Spaß macht.","Für Zufriedenheit am Arbeitsplatz kann Geld allein nicht entscheidend sein. Die Arbeit muss Spaß machen."],
       options:["A","B","C","D","E","F","G","H","I","J"], answers:["J","I","G","C","D"]},
-    teil2: {instructions:"Lesen Sie den Text und die Aufgaben 6\u201310.",
-      readingText:"Die Sendung mit der Maus \u2013 Eine Ausstellung \u00fcber die ber\u00fchmte Fernsehserie\n\nMaus-Oleum hei\u00dft die Ausstellung im Jungen Museum, die \u00fcber 30 Jahre der Geschichte der Sendung mit der Maus zeigt. Die orangefarbene Maus erkl\u00e4rt die Welt, indem sie selbstverst\u00e4ndlich gewordene Dinge hinterfragt.\n\nAn Vorschl\u00e4gen fehlt es nicht. Woche f\u00fcr Woche kommen Briefe aus aller Welt. Seit 1971 ist die Maus aktiv.\n\n\u00dcberall, wo man etwas anfassen und ausprobieren kann, staunen die kleinen Besucher. Die Maus ist inzwischen auf Bildern, Postkarten und Plakaten auf der ganzen Welt zu sehen.",
+    teil2: {instructions:"Lesen Sie den Text und die Aufgaben 6–10.",
+      readingText:"Die Sendung mit der Maus – Eine Ausstellung über die berühmte Fernsehserie\n\nMaus-Oleum heißt die Ausstellung im Jungen Museum, die über 30 Jahre der Geschichte der Sendung mit der Maus zeigt. Die orangefarbene Maus erklärt die Welt, indem sie selbstverständlich gewordene Dinge hinterfragt.\n\nAn Vorschlägen fehlt es nicht. Woche für Woche kommen Briefe aus aller Welt. Seit 1971 ist die Maus aktiv.\n\nÜberall, wo man etwas anfassen und ausprobieren kann, staunen die kleinen Besucher. Die Maus ist inzwischen auf Bildern, Postkarten und Plakaten auf der ganzen Welt zu sehen.",
       questions:[
-        {num:6,text:"Die Maus...",options:["f\u00fchrt Kinder durch das Museum.","wird in einer Werbefirma gezeichnet.","wurde von Friedrich Streich erfunden."],answer:"c"},
+        {num:6,text:"Die Maus...",options:["führt Kinder durch das Museum.","wird in einer Werbefirma gezeichnet.","wurde von Friedrich Streich erfunden."],answer:"c"},
         {num:7,text:"Das Thema der Ausstellung...",options:["ist die Geschichte der Sendung mit der Maus.","ist 30 Jahre Junges Museum.","sind Kinder aus aller Welt."],answer:"a"},
-        {num:8,text:"Die Sendung mit der Maus...",options:["erh\u00e4lt Post aus der ganzen Welt.","hat es schwer, neue Themen zu finden.","nimmt nur Vorschl\u00e4ge von Kindern an."],answer:"a"},
-        {num:9,text:"Die Ausstellung...",options:["erlaubt den Kindern, mit den Ausstellungsst\u00fccken zu spielen.","erlaubt nicht, Ausstellungsst\u00fccke anzufassen.","ist nur f\u00fcr Kinder ge\u00f6ffnet."],answer:"a"},
-        {num:10,text:"Die Maus...",options:["erh\u00e4lt von den Kindern Geschenke aus verschiedenen Materialien.","gibt es nur auf Postkarten zu kaufen.","ist aus Wolle und Papier."],answer:"a"}]},
-    teil3: {instructions:"Lesen Sie die Situationen 11\u201320 und die Anzeigen a\u2013l.",
-      situations:[{num:11,text:"Sie m\u00f6chten als Student nebenbei Geld verdienen. Sie reisen gern."},{num:12,text:"Sie interessieren sich f\u00fcr Literatur aus arabischen L\u00e4ndern."},{num:13,text:"Ihr Freund m\u00f6chte gerne in einem Kino arbeiten."},{num:14,text:"Sie wollen in einem Restaurant arbeiten und dort auch wohnen."},{num:15,text:"Ihre Freundin sucht einen Kindergartenplatz f\u00fcr ihren kleinen Sohn."},{num:16,text:"Sie m\u00f6chten am n\u00e4chsten Wochenende in eine Diskothek gehen."},{num:17,text:"Sie m\u00f6chten tanzen lernen."},{num:18,text:"Sie haben gro\u00dfe Berufserfahrung in Gastst\u00e4tten. Jetzt m\u00f6chten Sie ein Restaurant leiten."},{num:19,text:"Sie m\u00f6chten Filme aus afrikanischen L\u00e4ndern sehen."},{num:20,text:"Sie m\u00f6chten einen Fotografiekurs besuchen und haben nur abends Zeit."}],
+        {num:8,text:"Die Sendung mit der Maus...",options:["erhält Post aus der ganzen Welt.","hat es schwer, neue Themen zu finden.","nimmt nur Vorschläge von Kindern an."],answer:"a"},
+        {num:9,text:"Die Ausstellung...",options:["erlaubt den Kindern, mit den Ausstellungsstücken zu spielen.","erlaubt nicht, Ausstellungsstücke anzufassen.","ist nur für Kinder geöffnet."],answer:"a"},
+        {num:10,text:"Die Maus...",options:["erhält von den Kindern Geschenke aus verschiedenen Materialien.","gibt es nur auf Postkarten zu kaufen.","ist aus Wolle und Papier."],answer:"a"}]},
+    teil3: {instructions:"Lesen Sie die Situationen 11–20 und die Anzeigen a–l.",
+      situations:[{num:11,text:"Sie möchten als Student nebenbei Geld verdienen. Sie reisen gern."},{num:12,text:"Sie interessieren sich für Literatur aus arabischen Ländern."},{num:13,text:"Ihr Freund möchte gerne in einem Kino arbeiten."},{num:14,text:"Sie wollen in einem Restaurant arbeiten und dort auch wohnen."},{num:15,text:"Ihre Freundin sucht einen Kindergartenplatz für ihren kleinen Sohn."},{num:16,text:"Sie möchten am nächsten Wochenende in eine Diskothek gehen."},{num:17,text:"Sie möchten tanzen lernen."},{num:18,text:"Sie haben große Berufserfahrung in Gaststätten. Jetzt möchten Sie ein Restaurant leiten."},{num:19,text:"Sie möchten Filme aus afrikanischen Ländern sehen."},{num:20,text:"Sie möchten einen Fotografiekurs besuchen und haben nur abends Zeit."}],
       options:["A","B","C","D","E","F","G","H","I","J","K","L","X"], answers:["D","K","J","A","H","X","I","F","B","X"]}
   },
   sprachbausteine: {
-    teil1: {instructions:"Lesen Sie den Text und schlie\u00dfen Sie die L\u00fccken 21\u201330.",
-      readingText:"Liebe Vollzwinkler,\n\nwir wohnen jetzt schon (21) sechs Wochen in unserer neuen Wohnung. Zwar ist immer noch nicht alles so eingerichtet, wie wir (22) das w\u00fcnschen. Aber wir wussten ja, dass das einige Zeit (23) w\u00fcrde. Unsere beiden Kinder durften sich die Farben f\u00fcr die W\u00e4nde selbst (24). Meinem Mann (25) das am Anfang gar nicht gefallen, aber jetzt hat er sich (26) gew\u00f6hnt. Wir warten auf die neuen M\u00f6bel, (27) wir gekauft haben. In der (28) Woche kommen sie endlich. Wir w\u00fcrden uns freuen, wenn Sie uns bald besuchen (29). Trotz (30) sch\u00f6nen neuen Wohnung sind wir traurig, dass wir nicht mehr neben Ihnen wohnen.\n\nViele liebe Gr\u00fc\u00dfe\nIhre Edeltraut Augenthaler",
+    teil1: {instructions:"Lesen Sie den Text und schließen Sie die Lücken 21–30.",
+      readingText:"Liebe Vollzwinkler,\n\nwir wohnen jetzt schon (21) sechs Wochen in unserer neuen Wohnung. Zwar ist immer noch nicht alles so eingerichtet, wie wir (22) das wünschen. Aber wir wussten ja, dass das einige Zeit (23) würde. Unsere beiden Kinder durften sich die Farben für die Wände selbst (24). Meinem Mann (25) das am Anfang gar nicht gefallen, aber jetzt hat er sich (26) gewöhnt. Wir warten auf die neuen Möbel, (27) wir gekauft haben. In der (28) Woche kommen sie endlich. Wir würden uns freuen, wenn Sie uns bald besuchen (29). Trotz (30) schönen neuen Wohnung sind wir traurig, dass wir nicht mehr neben Ihnen wohnen.\n\nViele liebe Grüße\nIhre Edeltraut Augenthaler",
       questions:[
         {num:21,text:"(21)",options:["ab","seit","vor"],answer:"b"},
         {num:22,text:"(22)",options:["ihnen","sich","uns"],answer:"c"},
         {num:23,text:"(23)",options:["dauern","dauert","gedauert"],answer:"a"},
         {num:24,text:"(24)",options:["ausgesucht","aussuchen","aussuchten"],answer:"b"},
         {num:25,text:"(25)",options:["hat","ist","wird"],answer:"a"},
-        {num:26,text:"(26)",options:["daran","dar\u00fcber","davon"],answer:"a"},
+        {num:26,text:"(26)",options:["daran","darüber","davon"],answer:"a"},
         {num:27,text:"(27)",options:["das","den","die"],answer:"c"},
-        {num:28,text:"(28)",options:["n\u00e4chsten","n\u00e4chster","n\u00e4chstes"],answer:"a"},
-        {num:29,text:"(29)",options:["wurden","w\u00fcrden","worden"],answer:"b"},
+        {num:28,text:"(28)",options:["nächsten","nächster","nächstes"],answer:"a"},
+        {num:29,text:"(29)",options:["wurden","würden","worden"],answer:"b"},
         {num:30,text:"(30)",options:["unser","unserer","unseres"],answer:"b"}]},
-    teil2: {instructions:"Lesen Sie den Text und schlie\u00dfen Sie die L\u00fccken 31\u201340.",
-      readingText:"Sehr geehrte Damen und Herren,\n\nvielen Dank f\u00fcr die (31) Zusendung der Informationsmaterialien. Ich interessiere mich sowohl f\u00fcr das Seminar \u2018Schutz gegen Computerviren\u2019 als (32) f\u00fcr \u2018Einf\u00fchrung ins Internet\u2019. Dazu habe ich noch (33) Fragen. (35) Sie mir die Schulungsunterlagen vorher schicken? Gibt es f\u00fcr die (36) Seminare noch Pl\u00e4tze? Bis (37) muss ich mich sp\u00e4testens anmelden? Und (38) ich wissen, (39) man im Voraus bezahlen muss. (40) ich auch eine Kursbest\u00e4tigung erhalten?\n\nMit freundlichen Gr\u00fc\u00dfen\nWilly Gates",
-      wordBank:["AUCH","BEIDEN","EINE","EINIGE","K\u00d6NNTEN","M\u00d6CHTE","M\u00dcSSEN","OB","SCHNELLE","SCHON","SOLL","SONDERN","VORNE","WANN","WERDE"],
+    teil2: {instructions:"Lesen Sie den Text und schließen Sie die Lücken 31–40.",
+      readingText:"Sehr geehrte Damen und Herren,\n\nvielen Dank für die (31) Zusendung der Informationsmaterialien. Ich interessiere mich sowohl für das Seminar ‘Schutz gegen Computerviren’ als (32) für ‘Einführung ins Internet’. Dazu habe ich noch (33) Fragen. (35) Sie mir die Schulungsunterlagen vorher schicken? Gibt es für die (36) Seminare noch Plätze? Bis (37) muss ich mich spätestens anmelden? Und (38) ich wissen, (39) man im Voraus bezahlen muss. (40) ich auch eine Kursbestätigung erhalten?\n\nMit freundlichen Grüßen\nWilly Gates",
+      wordBank:["AUCH","BEIDEN","EINE","EINIGE","KÖNNTEN","MÖCHTE","MÜSSEN","OB","SCHNELLE","SCHON","SOLL","SONDERN","VORNE","WANN","WERDE"],
       options:["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"],
       questions:[{num:31},{num:32},{num:33},{num:34},{num:35},{num:36},{num:37},{num:38},{num:39},{num:40}],
       answers:["I","A","D","J","E","B","N","F","H","O"],
-      answerWords:["SCHNELLE","AUCH","EINIGE","SCHON","K\u00d6NNTEN","BEIDEN","WANN","M\u00d6CHTE","OB","WERDE"]}
+      answerWords:["SCHNELLE","AUCH","EINIGE","SCHON","KÖNNTEN","BEIDEN","WANN","MÖCHTE","OB","WERDE"]}
   },
   hoerverstehen: {
-    teil1:{instructions:"Entscheiden Sie, ob die Aussagen 41\u201345 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:41,text:"Der Sprecher hat zu Hause keinen Computer."},{num:42,text:"Der Sprecher benutzt den Computer nur am Arbeitsplatz."},{num:43,text:"Die Sprecherin lehnt Computer ab."},{num:44,text:"Die Sprecherin hat kein gro\u00dfes Vertrauen zu Computern."},{num:45,text:"Die Sprecherin braucht den Computer im t\u00e4glichen Leben."}],
+    teil1:{instructions:"Entscheiden Sie, ob die Aussagen 41–45 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:41,text:"Der Sprecher hat zu Hause keinen Computer."},{num:42,text:"Der Sprecher benutzt den Computer nur am Arbeitsplatz."},{num:43,text:"Die Sprecherin lehnt Computer ab."},{num:44,text:"Die Sprecherin hat kein großes Vertrauen zu Computern."},{num:45,text:"Die Sprecherin braucht den Computer im täglichen Leben."}],
       answers:["-","-","+","+","-"]},
-    teil2:{instructions:"Entscheiden Sie, ob die Aussagen 46\u201355 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:46,text:"Herr Bachinger hat ein Buch \u00fcber V\u00e4ter geschrieben."},{num:47,text:"Herr Bachinger hat vor zehn Monaten geheiratet."},{num:48,text:"Herr Bachinger meint, dass die Zeitungen mehr \u00fcber moderne Familien berichten sollen."},{num:49,text:"Herr Bachinger konnte seinen Chef sofort \u00fcberzeugen."},{num:50,text:"Hausarbeit war f\u00fcr Herrn Bachinger nichts Neues."},{num:51,text:"Seine Kollegen haben ihn anfangs sehr vermisst."},{num:52,text:"Herr Bachinger hat gegen viele Vorurteile k\u00e4mpfen m\u00fcssen."},{num:53,text:"Herr Bachinger hat das Buch f\u00fcr andere V\u00e4ter geschrieben."},{num:54,text:"Er will erst wieder arbeiten gehen, wenn sein Sohn in die Schule kommt."},{num:55,text:"Herr Bachinger meint, dass Teilzeitarbeit f\u00fcr ihn das Beste sei."}],
+    teil2:{instructions:"Entscheiden Sie, ob die Aussagen 46–55 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:46,text:"Herr Bachinger hat ein Buch über Väter geschrieben."},{num:47,text:"Herr Bachinger hat vor zehn Monaten geheiratet."},{num:48,text:"Herr Bachinger meint, dass die Zeitungen mehr über moderne Familien berichten sollen."},{num:49,text:"Herr Bachinger konnte seinen Chef sofort überzeugen."},{num:50,text:"Hausarbeit war für Herrn Bachinger nichts Neues."},{num:51,text:"Seine Kollegen haben ihn anfangs sehr vermisst."},{num:52,text:"Herr Bachinger hat gegen viele Vorurteile kämpfen müssen."},{num:53,text:"Herr Bachinger hat das Buch für andere Väter geschrieben."},{num:54,text:"Er will erst wieder arbeiten gehen, wenn sein Sohn in die Schule kommt."},{num:55,text:"Herr Bachinger meint, dass Teilzeitarbeit für ihn das Beste sei."}],
       answers:["+","-","-","+","+","-","-","-","+","-"]},
-    teil3:{instructions:"Entscheiden Sie, ob die Aussagen 56\u201360 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:56,text:"Der Fahrer des Wagens mit dem Kennzeichen HB-D 256 soll ins Erdgeschoss kommen."},{num:57,text:"Die Firma liefert das bestellte Sofa am Dienstag ab drei Uhr nachmittags."},{num:58,text:"Der Gasthof Lindner ist neben einer Tankstelle."},{num:59,text:"Der Film \u2018Komiker\u2019 l\u00e4uft t\u00e4glich um 20 Uhr."},{num:60,text:"Das Wetter ist am Abend noch gut."}],
+    teil3:{instructions:"Entscheiden Sie, ob die Aussagen 56–60 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:56,text:"Der Fahrer des Wagens mit dem Kennzeichen HB-D 256 soll ins Erdgeschoss kommen."},{num:57,text:"Die Firma liefert das bestellte Sofa am Dienstag ab drei Uhr nachmittags."},{num:58,text:"Der Gasthof Lindner ist neben einer Tankstelle."},{num:59,text:"Der Film ‘Komiker’ läuft täglich um 20 Uhr."},{num:60,text:"Das Wetter ist am Abend noch gut."}],
       answers:["+","-","+","+","-"]}
   }
 },
 {
-  id: 4, title: "\u00dcbungstest 4", subtitle: "Kirche / Handy & Computer",
+  id: 4, title: "Übungstest 4", subtitle: "Kirche / Handy & Computer",
   leseverstehen: {
-    teil1:{instructions:"Lesen Sie die \u00dcberschriften a\u2013j und die Texte 1\u20135.",
-      headings:[{letter:"A",text:"Bilder mit dem Computer bearbeiten"},{letter:"B",text:"Kirche bietet Backkurs f\u00fcr Kinder an"},{letter:"C",text:"Kirche er\u00f6ffnet neuen Treffpunkt"},{letter:"D",text:"Neu: Kochbuch \u00fcber Wiener Fleischgerichte"},{letter:"E",text:"Neue Computerprogramme werden getestet"},{letter:"F",text:"Preis f\u00fcr bestes Lernprogramm"},{letter:"G",text:"Rezepte f\u00fcr Kuchen und Torten"},{letter:"H",text:"Studie zeigt: Kaffeetrinker sind gl\u00fccklicher"},{letter:"I",text:"Warum die Wiener ins Caf\u00e9 gehen"},{letter:"J",text:"Z\u00fcrcher Fotografen stellen aus"}],
-      texts:["Die Kunst- und Medienschule Z\u00fcrich bietet den Computerkurs \u2018Digitale Bildbearbeitung\u2019 an.","Neuperlach-S\u00fcd: Nach dem Einkaufen einen Kaffee genie\u00dfen \u2013 im neuen Eiscaf\u00e9 der Kirche.","Geheimnisse der modernen Konditorkunst: Mehlspeisenrezepte von der Birnentorte bis zum Heidelbeerstollen.","Am Montag wird in Stuttgart die Bildungsmesse Didacta er\u00f6ffnet. F\u00fcr ein gelungenes Softwareprojekt wird der Bildungssoftwarepreis vergeben.","Das Gallup-Institut hat sich mit dem Kaffeehausverhalten der Wiener besch\u00e4ftigt."],
+    teil1:{instructions:"Lesen Sie die Überschriften a–j und die Texte 1–5.",
+      headings:[{letter:"A",text:"Bilder mit dem Computer bearbeiten"},{letter:"B",text:"Kirche bietet Backkurs für Kinder an"},{letter:"C",text:"Kirche eröffnet neuen Treffpunkt"},{letter:"D",text:"Neu: Kochbuch über Wiener Fleischgerichte"},{letter:"E",text:"Neue Computerprogramme werden getestet"},{letter:"F",text:"Preis für bestes Lernprogramm"},{letter:"G",text:"Rezepte für Kuchen und Torten"},{letter:"H",text:"Studie zeigt: Kaffeetrinker sind glücklicher"},{letter:"I",text:"Warum die Wiener ins Café gehen"},{letter:"J",text:"Zürcher Fotografen stellen aus"}],
+      texts:["Die Kunst- und Medienschule Zürich bietet den Computerkurs ‘Digitale Bildbearbeitung’ an.","Neuperlach-Süd: Nach dem Einkaufen einen Kaffee genießen – im neuen Eiscafé der Kirche.","Geheimnisse der modernen Konditorkunst: Mehlspeisenrezepte von der Birnentorte bis zum Heidelbeerstollen.","Am Montag wird in Stuttgart die Bildungsmesse Didacta eröffnet. Für ein gelungenes Softwareprojekt wird der Bildungssoftwarepreis vergeben.","Das Gallup-Institut hat sich mit dem Kaffeehausverhalten der Wiener beschäftigt."],
       options:["A","B","C","D","E","F","G","H","I","J"], answers:["A","C","G","F","I"]},
-    teil2:{instructions:"Lesen Sie den Text und die Aufgaben 6\u201310.",
-      readingText:"Verheiratet mit Handy und Computer\n\nDie Woche mit sechzig bis achtzig Arbeitsstunden war f\u00fcr Volkmar Bergmann ganz normal. Erst als sein Sohn geboren wurde, fing er an, die Dinge anders zu sehen. Heute arbeitet Bergmann nur 20 Stunden die Woche.\n\nEin 24-Stunden-Arbeitstag ist der Trend, sagt Professor Robinson. Millionen von Arbeitnehmern geben ihre ganze Kraft f\u00fcr ihren Job.\n\nDurch das Handy ist man \u00fcberall erreichbar. Der Arbeitsplatz wird als Zuhause angesehen.\n\nInzwischen gibt es Seminare f\u00fcr Arbeitskranke, in denen die Teilnehmenden lernen sollen, wieder zu leben. Der Psychologe Ulrich Beer: Im Kalender m\u00fcssen genau so viele private wie berufliche Termine stehen.",
+    teil2:{instructions:"Lesen Sie den Text und die Aufgaben 6–10.",
+      readingText:"Verheiratet mit Handy und Computer\n\nDie Woche mit sechzig bis achtzig Arbeitsstunden war für Volkmar Bergmann ganz normal. Erst als sein Sohn geboren wurde, fing er an, die Dinge anders zu sehen. Heute arbeitet Bergmann nur 20 Stunden die Woche.\n\nEin 24-Stunden-Arbeitstag ist der Trend, sagt Professor Robinson. Millionen von Arbeitnehmern geben ihre ganze Kraft für ihren Job.\n\nDurch das Handy ist man überall erreichbar. Der Arbeitsplatz wird als Zuhause angesehen.\n\nInzwischen gibt es Seminare für Arbeitskranke, in denen die Teilnehmenden lernen sollen, wieder zu leben. Der Psychologe Ulrich Beer: Im Kalender müssen genau so viele private wie berufliche Termine stehen.",
       questions:[
-        {num:6,text:"Volkmar Bergmann...",options:["wollte bei einer anderen Firma arbeiten.","wollte mehr Zeit f\u00fcr sein Privatleben haben.","wollte nur noch nachts arbeiten."],answer:"b"},
-        {num:7,text:"Es gibt viele Menschen, ...",options:["die gerne einen anderen Schreibtisch h\u00e4tten.","die heute bereits arbeitskrank sind.","die pro Woche nur noch 24 Stunden arbeiten."],answer:"b"},
-        {num:8,text:"Durch die moderne Technik...",options:["haben die Menschen mehr Zeit f\u00fcr das Privatleben.","kann die Arbeit fast \u00fcberall erledigt werden.","wird es immer weniger Arbeit geben."],answer:"b"},
-        {num:9,text:"Laut Professor Robinson...",options:["wollen viele Menschen weniger arbeiten.","kann viel Arbeit den Menschen gut tun.","leben viele Menschen nur noch f\u00fcr ihren Beruf."],answer:"c"},
-        {num:10,text:"In Seminaren sollen die Teilnehmer lernen, ...",options:["kranken Mitarbeitern zu helfen.","wie man die Arbeit besser organisiert.","ein gesundes Verh\u00e4ltnis zur Arbeit zu finden."],answer:"c"}]},
-    teil3:{instructions:"Lesen Sie die Situationen 11\u201320 und die Anzeigen a\u2013l.",
-      situations:[{num:11,text:"Sie wollen am Wochenende in ein Klavierkonzert gehen."},{num:12,text:"Sie sind in F\u00fcssen und wollen am Montag ins Museum gehen."},{num:13,text:"Sie sind in S\u00fcddeutschland und m\u00f6chten eine bayerische Spezialit\u00e4t essen."},{num:14,text:"Sie haben sich mit Bekannten zu einem Fischessen verabredet."},{num:15,text:"Sie sind in Bayern und wollen K\u00e4sespezialit\u00e4ten einkaufen."},{num:16,text:"Sie m\u00f6chten einen Deutschkurs in Wien besuchen."},{num:17,text:"Ihr 16-j\u00e4hriger Sohn soll im Ausland Englisch lernen."},{num:18,text:"Sie interessieren sich f\u00fcr einen Sprachkurs auf CD."},{num:19,text:"Sie wollen, dass Ihre 10-j\u00e4hrige Tochter eine Fremdsprache lernt."},{num:20,text:"Eine Bekannte will ihren Geburtstag in einem Restaurant feiern und dort \u00fcbernachten."}],
+        {num:6,text:"Volkmar Bergmann...",options:["wollte bei einer anderen Firma arbeiten.","wollte mehr Zeit für sein Privatleben haben.","wollte nur noch nachts arbeiten."],answer:"b"},
+        {num:7,text:"Es gibt viele Menschen, ...",options:["die gerne einen anderen Schreibtisch hätten.","die heute bereits arbeitskrank sind.","die pro Woche nur noch 24 Stunden arbeiten."],answer:"b"},
+        {num:8,text:"Durch die moderne Technik...",options:["haben die Menschen mehr Zeit für das Privatleben.","kann die Arbeit fast überall erledigt werden.","wird es immer weniger Arbeit geben."],answer:"b"},
+        {num:9,text:"Laut Professor Robinson...",options:["wollen viele Menschen weniger arbeiten.","kann viel Arbeit den Menschen gut tun.","leben viele Menschen nur noch für ihren Beruf."],answer:"c"},
+        {num:10,text:"In Seminaren sollen die Teilnehmer lernen, ...",options:["kranken Mitarbeitern zu helfen.","wie man die Arbeit besser organisiert.","ein gesundes Verhältnis zur Arbeit zu finden."],answer:"c"}]},
+    teil3:{instructions:"Lesen Sie die Situationen 11–20 und die Anzeigen a–l.",
+      situations:[{num:11,text:"Sie wollen am Wochenende in ein Klavierkonzert gehen."},{num:12,text:"Sie sind in Füssen und wollen am Montag ins Museum gehen."},{num:13,text:"Sie sind in Süddeutschland und möchten eine bayerische Spezialität essen."},{num:14,text:"Sie haben sich mit Bekannten zu einem Fischessen verabredet."},{num:15,text:"Sie sind in Bayern und wollen Käsespezialitäten einkaufen."},{num:16,text:"Sie möchten einen Deutschkurs in Wien besuchen."},{num:17,text:"Ihr 16-jähriger Sohn soll im Ausland Englisch lernen."},{num:18,text:"Sie interessieren sich für einen Sprachkurs auf CD."},{num:19,text:"Sie wollen, dass Ihre 10-jährige Tochter eine Fremdsprache lernt."},{num:20,text:"Eine Bekannte will ihren Geburtstag in einem Restaurant feiern und dort übernachten."}],
       options:["A","B","C","D","E","F","G","H","I","J","K","L","X"], answers:["E","F","B","K","C","J","H","X","X","L"]}
   },
   sprachbausteine: {
-    teil1:{instructions:"Lesen Sie den Text und schlie\u00dfen Sie die L\u00fccken 21\u201330.",
-      readingText:"Sehr geehrter Herr Meyerhofer,\n\nWie Sie wissen, miete ich seit drei Jahren eine Wohnung in (21) Haus. Ich (22) die ganze Zeit sehr zufrieden. In der Zwischenzeit (23) sich die Wohnqualit\u00e4t verschlechtert. (24) sp\u00e4t abends h\u00f6re ich (25) L\u00e4rm der Restaurantg\u00e4ste. Die Parkpl\u00e4tze, (26) f\u00fcr die Mieter reserviert sind, sind immer besetzt. Ich f\u00fchle mich (27) Haus nicht mehr sicher, weil das Restaurant die ganze Nacht (28) hat. Ich m\u00f6chte Sie bitten, sich um diese (29) zu k\u00fcmmern. Vielleicht k\u00f6nnte (30) gemeinsam eine L\u00f6sung finden.",
+    teil1:{instructions:"Lesen Sie den Text und schließen Sie die Lücken 21–30.",
+      readingText:"Sehr geehrter Herr Meyerhofer,\n\nWie Sie wissen, miete ich seit drei Jahren eine Wohnung in (21) Haus. Ich (22) die ganze Zeit sehr zufrieden. In der Zwischenzeit (23) sich die Wohnqualität verschlechtert. (24) spät abends höre ich (25) Lärm der Restaurantgäste. Die Parkplätze, (26) für die Mieter reserviert sind, sind immer besetzt. Ich fühle mich (27) Haus nicht mehr sicher, weil das Restaurant die ganze Nacht (28) hat. Ich möchte Sie bitten, sich um diese (29) zu kümmern. Vielleicht könnte (30) gemeinsam eine Lösung finden.",
       questions:[
         {num:21,text:"(21)",options:["Ihr","Ihrem","Ihren"],answer:"b"},
-        {num:22,text:"(22)",options:["war","w\u00e4re","w\u00fcrde"],answer:"a"},
+        {num:22,text:"(22)",options:["war","wäre","würde"],answer:"a"},
         {num:23,text:"(23)",options:["hat","ist","wurde"],answer:"a"},
         {num:24,text:"(24)",options:["Bis","Nach","Von"],answer:"a"},
         {num:25,text:"(25)",options:["dem","den","der"],answer:"b"},
         {num:26,text:"(26)",options:["denen","die","diese"],answer:"b"},
         {num:27,text:"(27)",options:["im","in","ins"],answer:"a"},
-        {num:28,text:"(28)",options:["ge\u00f6ffnet","\u00f6ffnen","\u00f6ffnet"],answer:"a"},
+        {num:28,text:"(28)",options:["geöffnet","öffnen","öffnet"],answer:"a"},
         {num:29,text:"(29)",options:["Problem","Probleme","Problemen"],answer:"b"},
         {num:30,text:"(30)",options:["er","man","wir"],answer:"b"}]},
-    teil2:{instructions:"Lesen Sie den Text und schlie\u00dfen Sie die L\u00fccken 31\u201340.",
-      readingText:"Sehr geehrte Damen und Herren,\n\nich m\u00f6chte (31) den n\u00e4chsten Sommerferien mein Deutsch verbessern. Klagenfurt ist f\u00fcr mich der ideale Ort, (32) das nicht so weit weg ist. Ich kann zwar (33) ganz gut schreiben, (34) ich habe immer wieder Probleme beim freien Sprechen. Am liebsten w\u00e4re mir ein Kurs, (35) nur vormittags stattfindet, (36) ich nachmittags etwas anderes machen kann. (37) Sie einen passenden Kurs haben, schicken Sie mir bitte sobald (38) m\u00f6glich n\u00e4here Informationen. Bitte empfehlen Sie mir auch ein (39) gute Webseiten.\n\nVielen Dank\nIvica Palic",
+    teil2:{instructions:"Lesen Sie den Text und schließen Sie die Lücken 31–40.",
+      readingText:"Sehr geehrte Damen und Herren,\n\nich möchte (31) den nächsten Sommerferien mein Deutsch verbessern. Klagenfurt ist für mich der ideale Ort, (32) das nicht so weit weg ist. Ich kann zwar (33) ganz gut schreiben, (34) ich habe immer wieder Probleme beim freien Sprechen. Am liebsten wäre mir ein Kurs, (35) nur vormittags stattfindet, (36) ich nachmittags etwas anderes machen kann. (37) Sie einen passenden Kurs haben, schicken Sie mir bitte sobald (38) möglich nähere Informationen. Bitte empfehlen Sie mir auch ein (39) gute Webseiten.\n\nVielen Dank\nIvica Palic",
       wordBank:["ABER","DAMIT","DER","IN","MANCHMAL","MIT","PAAR","SCHON","SEHR","TROTZ","WANN","WEIL","WENN","WIE","ZU"],
       options:["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"],
       questions:[{num:31},{num:32},{num:33},{num:34},{num:35},{num:36},{num:37},{num:38},{num:39},{num:40}],
@@ -355,67 +355,67 @@ const EXAMS = [
       answerWords:["IN","WEIL","MANCHMAL","ABER","DER","DAMIT","WENN","WIE","PAAR","SCHON"]}
   },
   hoerverstehen: {
-    teil1:{instructions:"Entscheiden Sie, ob die Aussagen 41\u201345 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:41,text:"Die Sprecherin w\u00e4re lieber ein Einzelkind."},{num:42,text:"Der Sprecher hat heute ein gutes Verh\u00e4ltnis zu seinem Bruder."},{num:43,text:"Die Sprecherin w\u00fcrde heute gern noch eine Schwester haben."},{num:44,text:"Die Sprecherin hat schon fr\u00fch lernen m\u00fcssen, dass man R\u00fccksicht nehmen muss."},{num:45,text:"Die Sprecherin versteht sich sehr gut mit ihrem Bruder."}],
+    teil1:{instructions:"Entscheiden Sie, ob die Aussagen 41–45 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:41,text:"Die Sprecherin wäre lieber ein Einzelkind."},{num:42,text:"Der Sprecher hat heute ein gutes Verhältnis zu seinem Bruder."},{num:43,text:"Die Sprecherin würde heute gern noch eine Schwester haben."},{num:44,text:"Die Sprecherin hat schon früh lernen müssen, dass man Rücksicht nehmen muss."},{num:45,text:"Die Sprecherin versteht sich sehr gut mit ihrem Bruder."}],
       answers:["-","+","-","+","+"]},
-    teil2:{instructions:"Entscheiden Sie, ob die Aussagen 46\u201355 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:46,text:"Die Lehrerin f\u00e4hrt mit ihrer Klasse an die Nordsee."},{num:47,text:"Herr K\u00fchne hat den Brief der Lehrerin nicht erhalten."},{num:48,text:"Die Klassenfahrt beginnt an einem Samstag."},{num:49,text:"Herrn K\u00fchnes Sohn Martin wird bei Busfahrten oft schlecht."},{num:50,text:"Die Fahrt mit dem Schiff dauert f\u00fcnf bis sechs Stunden."},{num:51,text:"Das Haus geh\u00f6rt zu einem Hotel."},{num:52,text:"Die Klassenfahrt wird von einer Lehrerin und einem Lehrer geleitet."},{num:53,text:"Die Lehrerin empfiehlt, nicht mehr als 50 Euro Taschengeld mitzunehmen."},{num:54,text:"Katerina kann entweder mitfahren oder in eine andere Klasse gehen."},{num:55,text:"Auf der Klassenfahrt darf nur mit Erlaubnis der Eltern geraucht werden."}],
+    teil2:{instructions:"Entscheiden Sie, ob die Aussagen 46–55 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:46,text:"Die Lehrerin fährt mit ihrer Klasse an die Nordsee."},{num:47,text:"Herr Kühne hat den Brief der Lehrerin nicht erhalten."},{num:48,text:"Die Klassenfahrt beginnt an einem Samstag."},{num:49,text:"Herrn Kühnes Sohn Martin wird bei Busfahrten oft schlecht."},{num:50,text:"Die Fahrt mit dem Schiff dauert fünf bis sechs Stunden."},{num:51,text:"Das Haus gehört zu einem Hotel."},{num:52,text:"Die Klassenfahrt wird von einer Lehrerin und einem Lehrer geleitet."},{num:53,text:"Die Lehrerin empfiehlt, nicht mehr als 50 Euro Taschengeld mitzunehmen."},{num:54,text:"Katerina kann entweder mitfahren oder in eine andere Klasse gehen."},{num:55,text:"Auf der Klassenfahrt darf nur mit Erlaubnis der Eltern geraucht werden."}],
       answers:["-","+","-","+","-","-","+","+","+","-"]},
-    teil3:{instructions:"Entscheiden Sie, ob die Aussagen 56\u201360 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:56,text:"Sie m\u00fcssen in Ingolstadt die Regionalbahn nehmen."},{num:57,text:"Clara kann wegen einer Pr\u00fcfung die Theaterkarten nicht abholen."},{num:58,text:"Im Schwarzwald k\u00f6nnen die Stra\u00dfen morgen glatt werden."},{num:59,text:"Der Liederabend findet zu einem sp\u00e4teren Termin statt."},{num:60,text:"Im Untergeschoss gibt es Winterkleidung zum halben Preis."}],
+    teil3:{instructions:"Entscheiden Sie, ob die Aussagen 56–60 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:56,text:"Sie müssen in Ingolstadt die Regionalbahn nehmen."},{num:57,text:"Clara kann wegen einer Prüfung die Theaterkarten nicht abholen."},{num:58,text:"Im Schwarzwald können die Straßen morgen glatt werden."},{num:59,text:"Der Liederabend findet zu einem späteren Termin statt."},{num:60,text:"Im Untergeschoss gibt es Winterkleidung zum halben Preis."}],
       answers:["-","-","+","+","-"]}
   }
 },
 {
-  id: 5, title: "\u00dcbungstest 5", subtitle: "Computer & Internet",
+  id: 5, title: "Übungstest 5", subtitle: "Computer & Internet",
   leseverstehen: {
-    teil1:{instructions:"Lesen Sie die \u00dcberschriften a\u2013j und die Texte 1\u20135.",
-      headings:[{letter:"A",text:"Sportkurse f\u00fcr \u00e4ltere Menschen"},{letter:"B",text:"F\u00fcr Jugendliche ist der Computer etwas Allt\u00e4gliches"},{letter:"C",text:"Das Interesse am Handel \u00fcber Internet nimmt ab"},{letter:"D",text:"Arbeiten am Computer verursacht R\u00fcckenschmerzen"},{letter:"E",text:"Internetnutzer machen viele Dinge gleichzeitig"},{letter:"F",text:"Firmen m\u00fcssen auch \u00fcber Internet werben"},{letter:"G",text:"Auch Freizeitsportarten sollten trainiert werden"},{letter:"H",text:"Was man gegen R\u00fcckenschmerzen tun kann"},{letter:"I",text:"Kinder wollen mit dem Computer nur spielen"},{letter:"J",text:"Internetnutzer interessieren sich nicht f\u00fcrs Fernsehen"}],
-      texts:["Falsche K\u00f6rperhaltung und mangelnde Bewegung sind die Hauptfaktoren f\u00fcr R\u00fcckenschmerzen. Hier finden Sie ein Trainingsprogramm.","Der Computer geh\u00f6rt heute selbstverst\u00e4ndlich in das Jugendzimmer. Was treiben die Kids? Spielen, Texte schreiben und im Internet surfen.","Inline-Skating ist ein idealer Ausdauersport. Allerdings fragt der Arzt, warum jeder Skifahrer Trainingsstunden belegt, aber nicht der Inliner.","Eine Studie der ARD und ZDF besagt, dass Internetnutzer sich auch mit anderen Dingen besch\u00e4ftigen, wenn sie im Internet sind.","Gesch\u00e4fte \u00fcber das Internet werden in Deutschland auch in Zukunft Milliarden Euro einbringen."],
+    teil1:{instructions:"Lesen Sie die Überschriften a–j und die Texte 1–5.",
+      headings:[{letter:"A",text:"Sportkurse für ältere Menschen"},{letter:"B",text:"Für Jugendliche ist der Computer etwas Alltägliches"},{letter:"C",text:"Das Interesse am Handel über Internet nimmt ab"},{letter:"D",text:"Arbeiten am Computer verursacht Rückenschmerzen"},{letter:"E",text:"Internetnutzer machen viele Dinge gleichzeitig"},{letter:"F",text:"Firmen müssen auch über Internet werben"},{letter:"G",text:"Auch Freizeitsportarten sollten trainiert werden"},{letter:"H",text:"Was man gegen Rückenschmerzen tun kann"},{letter:"I",text:"Kinder wollen mit dem Computer nur spielen"},{letter:"J",text:"Internetnutzer interessieren sich nicht fürs Fernsehen"}],
+      texts:["Falsche Körperhaltung und mangelnde Bewegung sind die Hauptfaktoren für Rückenschmerzen. Hier finden Sie ein Trainingsprogramm.","Der Computer gehört heute selbstverständlich in das Jugendzimmer. Was treiben die Kids? Spielen, Texte schreiben und im Internet surfen.","Inline-Skating ist ein idealer Ausdauersport. Allerdings fragt der Arzt, warum jeder Skifahrer Trainingsstunden belegt, aber nicht der Inliner.","Eine Studie der ARD und ZDF besagt, dass Internetnutzer sich auch mit anderen Dingen beschäftigen, wenn sie im Internet sind.","Geschäfte über das Internet werden in Deutschland auch in Zukunft Milliarden Euro einbringen."],
       options:["A","B","C","D","E","F","G","H","I","J"], answers:["H","B","G","E","F"]},
-    teil2:{instructions:"Lesen Sie den Text und die Aufgaben 6\u201310.",
-      readingText:"Computerkurse sind schon f\u00fcr Kinder spannend\n\nSeit f\u00fcnf Jahren bietet Franz Krapfenbauer Computerkurse f\u00fcr Kinder zwischen sieben und vierzehn Jahren an. In seinen Kursen wird nicht gespielt, sondern der Computer wird als Lernhilfe genutzt. Sein Geheimnis: \u2018Ich erkl\u00e4re die Programme in der Sprache der Kinder.\u2019\n\nDas Schwierigste war, einen passenden Raum zu finden. Ein Bekannter, Direktor eines Hotels, hatte die L\u00f6sung.\n\nKrapfenbauer r\u00e4t, Kinder so fr\u00fch wie m\u00f6glich an den Computer zu lassen, aber unter Aufsicht. Viele Teilnehmer kommen gern zu den n\u00e4chsten Kursen.\n\n\u00dcberraschenderweise sind es oft die Gro\u00dfeltern, die f\u00fcr Computerkurse das Geld geben.",
+    teil2:{instructions:"Lesen Sie den Text und die Aufgaben 6–10.",
+      readingText:"Computerkurse sind schon für Kinder spannend\n\nSeit fünf Jahren bietet Franz Krapfenbauer Computerkurse für Kinder zwischen sieben und vierzehn Jahren an. In seinen Kursen wird nicht gespielt, sondern der Computer wird als Lernhilfe genutzt. Sein Geheimnis: ‘Ich erkläre die Programme in der Sprache der Kinder.’\n\nDas Schwierigste war, einen passenden Raum zu finden. Ein Bekannter, Direktor eines Hotels, hatte die Lösung.\n\nKrapfenbauer rät, Kinder so früh wie möglich an den Computer zu lassen, aber unter Aufsicht. Viele Teilnehmer kommen gern zu den nächsten Kursen.\n\nÜberraschenderweise sind es oft die Großeltern, die für Computerkurse das Geld geben.",
       questions:[
-        {num:6,text:"In den Computerkursen von Franz Krapfenbauer...",options:["lernen die Kinder Computerspiele kennen.","lernen Kinder ab 14 Jahren das richtige Arbeiten.","werden die Programme so einfach wie m\u00f6glich erkl\u00e4rt."],answer:"c"},
-        {num:7,text:"Am Anfang war es schwierig, ...",options:["einen geeigneten Raum zu finden.","genug Kinder f\u00fcr den Kurs zu finden.","seine Tochter f\u00fcr den Computer zu begeistern."],answer:"a"},
-        {num:8,text:"Herr Krapfenbauer meint, ...",options:["dass auch kleine Kinder mit dem Computer arbeiten sollen.","dass Kinder unter vier Jahren zu jung seien.","dass sich Kinder alleine besch\u00e4ftigen sollen."],answer:"a"},
+        {num:6,text:"In den Computerkursen von Franz Krapfenbauer...",options:["lernen die Kinder Computerspiele kennen.","lernen Kinder ab 14 Jahren das richtige Arbeiten.","werden die Programme so einfach wie möglich erklärt."],answer:"c"},
+        {num:7,text:"Am Anfang war es schwierig, ...",options:["einen geeigneten Raum zu finden.","genug Kinder für den Kurs zu finden.","seine Tochter für den Computer zu begeistern."],answer:"a"},
+        {num:8,text:"Herr Krapfenbauer meint, ...",options:["dass auch kleine Kinder mit dem Computer arbeiten sollen.","dass Kinder unter vier Jahren zu jung seien.","dass sich Kinder alleine beschäftigen sollen."],answer:"a"},
         {num:9,text:"Viele Kinder...",options:["machen im Kurs ihre Hausaufgaben.","machen nach dem ersten Kurs noch einen weiteren.","probieren neue Computerspiele aus."],answer:"b"},
-        {num:10,text:"Franz Krapfenbauer erz\u00e4hlt, ...",options:["dass die Computerkurse oft von den Gro\u00dfeltern bezahlt werden.","dass einige Eltern selbst Computerexperten sind.","dass er auch Kurse in B\u00fcros plant."],answer:"a"}]},
-    teil3:{instructions:"Lesen Sie die Situationen 11\u201320 und die Anzeigen a\u2013l.",
-      situations:[{num:11,text:"Sie suchen f\u00fcr Ihren 5-j\u00e4hrigen Sohn einen Skikurs."},{num:12,text:"Sie m\u00f6chten am Wochenende in den Zoo gehen."},{num:13,text:"Sie suchen eine Modezeitschrift f\u00fcr Ihre Freundin."},{num:14,text:"Ihre Bekannte sucht einen Job in einem Modegesch\u00e4ft."},{num:15,text:"Sie m\u00f6chten Ihre Freunde am Montagabend in den Zirkus einladen."},{num:16,text:"Ihre 10-j\u00e4hrige Tochter m\u00f6chte einen Tierfilm sehen."},{num:17,text:"Sie m\u00f6chten billige Winterkleidung kaufen."},{num:18,text:"Sie m\u00f6chten einen Skikurs machen und Skier leihen."},{num:19,text:"Sie machen in \u00d6sterreich Urlaub und m\u00f6chten einen Film im englischen Original sehen."},{num:20,text:"Sie interessieren sich f\u00fcr Tiere und m\u00f6chten ihnen helfen."}],
+        {num:10,text:"Franz Krapfenbauer erzählt, ...",options:["dass die Computerkurse oft von den Großeltern bezahlt werden.","dass einige Eltern selbst Computerexperten sind.","dass er auch Kurse in Büros plant."],answer:"a"}]},
+    teil3:{instructions:"Lesen Sie die Situationen 11–20 und die Anzeigen a–l.",
+      situations:[{num:11,text:"Sie suchen für Ihren 5-jährigen Sohn einen Skikurs."},{num:12,text:"Sie möchten am Wochenende in den Zoo gehen."},{num:13,text:"Sie suchen eine Modezeitschrift für Ihre Freundin."},{num:14,text:"Ihre Bekannte sucht einen Job in einem Modegeschäft."},{num:15,text:"Sie möchten Ihre Freunde am Montagabend in den Zirkus einladen."},{num:16,text:"Ihre 10-jährige Tochter möchte einen Tierfilm sehen."},{num:17,text:"Sie möchten billige Winterkleidung kaufen."},{num:18,text:"Sie möchten einen Skikurs machen und Skier leihen."},{num:19,text:"Sie machen in Österreich Urlaub und möchten einen Film im englischen Original sehen."},{num:20,text:"Sie interessieren sich für Tiere und möchten ihnen helfen."}],
       options:["A","B","C","D","E","F","G","H","I","J","K","L","X"], answers:["D","E","C","K","X","J","X","B","X","H"]}
   },
   sprachbausteine: {
-    teil1:{instructions:"Lesen Sie den Text und schlie\u00dfen Sie die L\u00fccken 21\u201330.",
-      readingText:"Genuss mit Kaffee Partner\n\nSehr geehrte Frau Thoma,\n\nschade, (21) Sie bisher noch nicht Kunde bei Kaffee Partner (22). Vielleicht liegt das an uns, weil wir (23) nicht das richtige Angebot gemacht haben, seit wir uns auf der Messe (24) haben. Wir (25) das jetzt mit dem aktuellen Katalog nachholen. Sie (26) darin viele n\u00fctzliche Dinge rund um das Thema Kaffee (27) Mitarbeiter und Besucher. Aber auch Tee und kleine Leckereien (28) Ihnen unser Geschenkkatalog. Wir freuen (29) auf Sie!\n\n(30) Gr\u00fc\u00dfe aus Wallenhorst\nIhr Kaffee Partner-Team",
+    teil1:{instructions:"Lesen Sie den Text und schließen Sie die Lücken 21–30.",
+      readingText:"Genuss mit Kaffee Partner\n\nSehr geehrte Frau Thoma,\n\nschade, (21) Sie bisher noch nicht Kunde bei Kaffee Partner (22). Vielleicht liegt das an uns, weil wir (23) nicht das richtige Angebot gemacht haben, seit wir uns auf der Messe (24) haben. Wir (25) das jetzt mit dem aktuellen Katalog nachholen. Sie (26) darin viele nützliche Dinge rund um das Thema Kaffee (27) Mitarbeiter und Besucher. Aber auch Tee und kleine Leckereien (28) Ihnen unser Geschenkkatalog. Wir freuen (29) auf Sie!\n\n(30) Grüße aus Wallenhorst\nIhr Kaffee Partner-Team",
       questions:[
         {num:21,text:"(21)",options:["dass","darum","weil"],answer:"a"},
         {num:22,text:"(22)",options:["seid","sein","sind"],answer:"c"},
         {num:23,text:"(23)",options:["euch","Ihnen","Sie"],answer:"b"},
         {num:24,text:"(24)",options:["kennen gelernt","kennen lernen","kennen lernte"],answer:"a"},
-        {num:25,text:"(25)",options:["mochten","m\u00f6chten","m\u00f6gen"],answer:"b"},
+        {num:25,text:"(25)",options:["mochten","möchten","mögen"],answer:"b"},
         {num:26,text:"(26)",options:["fanden","finden","findet"],answer:"b"},
-        {num:27,text:"(27)",options:["f\u00fcr","von","wegen"],answer:"a"},
+        {num:27,text:"(27)",options:["für","von","wegen"],answer:"a"},
         {num:28,text:"(28)",options:["gezeigt","zeigen","zeigt"],answer:"c"},
         {num:29,text:"(29)",options:["mich","sich","uns"],answer:"c"},
         {num:30,text:"(30)",options:["Freundlich","Freundliche","Freundlichen"],answer:"b"}]},
-    teil2:{instructions:"Lesen Sie den Text und schlie\u00dfen Sie die L\u00fccken 31\u201340.",
-      readingText:"Sehr geehrte Damen und Herren,\n\nleider (31) ich Sie im Moment nicht anrufen. (32) schreibe ich Ihnen. Mein Sohn macht (33) zwei Jahren sein Abitur, (34) seine Leistungen sind nicht so gut. Ich mache (35) Sorgen, besonders bei Physik und Mathematik. Er denkt, er brauche (36) F\u00e4cher nicht. Fragen wollte ich, (37) es Nachhilfe gibt. Und (38) finden die Stunden statt? Es w\u00e4re mir wichtig, dass Sie meinem Sohn helfen (39). Ab 19.30 Uhr bin ich telefonisch (40) der Nummer 0428-1734 zu erreichen.",
-      wordBank:["ABER","DARF","DASS","DESHALB","DIESE","IN","KANN","K\u00d6NNTEN","MICH","MIR","OB","OBWOHL","UNTER","VOR","WANN"],
+    teil2:{instructions:"Lesen Sie den Text und schließen Sie die Lücken 31–40.",
+      readingText:"Sehr geehrte Damen und Herren,\n\nleider (31) ich Sie im Moment nicht anrufen. (32) schreibe ich Ihnen. Mein Sohn macht (33) zwei Jahren sein Abitur, (34) seine Leistungen sind nicht so gut. Ich mache (35) Sorgen, besonders bei Physik und Mathematik. Er denkt, er brauche (36) Fächer nicht. Fragen wollte ich, (37) es Nachhilfe gibt. Und (38) finden die Stunden statt? Es wäre mir wichtig, dass Sie meinem Sohn helfen (39). Ab 19.30 Uhr bin ich telefonisch (40) der Nummer 0428-1734 zu erreichen.",
+      wordBank:["ABER","DARF","DASS","DESHALB","DIESE","IN","KANN","KÖNNTEN","MICH","MIR","OB","OBWOHL","UNTER","VOR","WANN"],
       options:["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"],
       questions:[{num:31},{num:32},{num:33},{num:34},{num:35},{num:36},{num:37},{num:38},{num:39},{num:40}],
       answers:["G","D","F","A","J","E","K","O","H","M"],
-      answerWords:["KANN","DESHALB","IN","ABER","MIR","DIESE","OB","WANN","K\u00d6NNTEN","UNTER"]}
+      answerWords:["KANN","DESHALB","IN","ABER","MIR","DIESE","OB","WANN","KÖNNTEN","UNTER"]}
   },
   hoerverstehen: {
-    teil1:{instructions:"Entscheiden Sie, ob die Aussagen 41\u201345 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:41,text:"Der Sprecher interessiert sich mehr f\u00fcr Sport als f\u00fcr Kultur."},{num:42,text:"Die Sprecherin geht so oft sie kann ins Theater."},{num:43,text:"Der Sprecher h\u00f6rt besonders gern moderne Musik."},{num:44,text:"Die Sprecherin geht oft in Kunstausstellungen."},{num:45,text:"Die Sprecherin h\u00e4tte gerne mehr Zeit f\u00fcr die Kultur."}],
+    teil1:{instructions:"Entscheiden Sie, ob die Aussagen 41–45 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:41,text:"Der Sprecher interessiert sich mehr für Sport als für Kultur."},{num:42,text:"Die Sprecherin geht so oft sie kann ins Theater."},{num:43,text:"Der Sprecher hört besonders gern moderne Musik."},{num:44,text:"Die Sprecherin geht oft in Kunstausstellungen."},{num:45,text:"Die Sprecherin hätte gerne mehr Zeit für die Kultur."}],
       answers:["+","+","-","-","+"]},
-    teil2:{instructions:"Entscheiden Sie, ob die Aussagen 46\u201355 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:46,text:"Die Lehrerin f\u00e4hrt mit ihrer Klasse an die Nordsee."},{num:47,text:"Herr K\u00fchne hat den Brief der Lehrerin nicht erhalten."},{num:48,text:"Die Klassenfahrt beginnt an einem Samstag."},{num:49,text:"Herrn K\u00fchnes Sohn wird bei Busfahrten oft schlecht."},{num:50,text:"Die Fahrt mit dem Schiff dauert f\u00fcnf bis sechs Stunden."},{num:51,text:"Das Haus geh\u00f6rt zu einem Hotel."},{num:52,text:"Die Klassenfahrt wird von einer Lehrerin und einem Lehrer geleitet."},{num:53,text:"Die Lehrerin empfiehlt, nicht mehr als 50 Euro Taschengeld mitzunehmen."},{num:54,text:"Katerina kann entweder mitfahren oder in eine andere Klasse gehen."},{num:55,text:"Auf der Klassenfahrt darf nur mit Erlaubnis der Eltern geraucht werden."}],
+    teil2:{instructions:"Entscheiden Sie, ob die Aussagen 46–55 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:46,text:"Die Lehrerin fährt mit ihrer Klasse an die Nordsee."},{num:47,text:"Herr Kühne hat den Brief der Lehrerin nicht erhalten."},{num:48,text:"Die Klassenfahrt beginnt an einem Samstag."},{num:49,text:"Herrn Kühnes Sohn wird bei Busfahrten oft schlecht."},{num:50,text:"Die Fahrt mit dem Schiff dauert fünf bis sechs Stunden."},{num:51,text:"Das Haus gehört zu einem Hotel."},{num:52,text:"Die Klassenfahrt wird von einer Lehrerin und einem Lehrer geleitet."},{num:53,text:"Die Lehrerin empfiehlt, nicht mehr als 50 Euro Taschengeld mitzunehmen."},{num:54,text:"Katerina kann entweder mitfahren oder in eine andere Klasse gehen."},{num:55,text:"Auf der Klassenfahrt darf nur mit Erlaubnis der Eltern geraucht werden."}],
       answers:["-","+","-","+","-","-","+","+","+","-"]},
-    teil3:{instructions:"Entscheiden Sie, ob die Aussagen 56\u201360 richtig (+) oder falsch (\u2212) sind.",note:"Audio nicht verf\u00fcgbar.",
-      questions:[{num:56,text:"Sie k\u00f6nnen mit dem Bus in die Innenstadt fahren."},{num:57,text:"Sie k\u00f6nnen noch eine Stunde durch alle Gesch\u00e4fte laufen."},{num:58,text:"Dr. Krausch ist ab dem 18. Oktober wieder in der Praxis."},{num:59,text:"Alle Kunden m\u00fcssen an der Kasse nebenan bezahlen."},{num:60,text:"Die Polizei informiert, dass alle Parkh\u00e4user besetzt sind."}],
+    teil3:{instructions:"Entscheiden Sie, ob die Aussagen 56–60 richtig (+) oder falsch (−) sind.",note:"Audio nicht verfügbar.",
+      questions:[{num:56,text:"Sie können mit dem Bus in die Innenstadt fahren."},{num:57,text:"Sie können noch eine Stunde durch alle Geschäfte laufen."},{num:58,text:"Dr. Krausch ist ab dem 18. Oktober wieder in der Praxis."},{num:59,text:"Alle Kunden müssen an der Kasse nebenan bezahlen."},{num:60,text:"Die Polizei informiert, dass alle Parkhäuser besetzt sind."}],
       answers:["+","-","+","-","-"]}
   }
 }
@@ -423,14 +423,14 @@ const EXAMS = [
 
 // ===================== CONSTANTS =====================
 const SECTIONS = [
-  {id:'lv1',label:'Lesen 1',icon:'\uD83D\uDCD6',category:'leseverstehen',part:'teil1',fullLabel:'Leseverstehen \u2013 Teil 1'},
-  {id:'lv2',label:'Lesen 2',icon:'\uD83D\uDCD6',category:'leseverstehen',part:'teil2',fullLabel:'Leseverstehen \u2013 Teil 2'},
-  {id:'lv3',label:'Lesen 3',icon:'\uD83D\uDCD6',category:'leseverstehen',part:'teil3',fullLabel:'Leseverstehen \u2013 Teil 3'},
-  {id:'sb1',label:'Sprache 1',icon:'\u270D\uFE0F',category:'sprachbausteine',part:'teil1',fullLabel:'Sprachbausteine \u2013 Teil 1'},
-  {id:'sb2',label:'Sprache 2',icon:'\u270D\uFE0F',category:'sprachbausteine',part:'teil2',fullLabel:'Sprachbausteine \u2013 Teil 2'},
-  {id:'hv1',label:'H\u00f6ren 1',icon:'\uD83C\uDFA7',category:'hoerverstehen',part:'teil1',fullLabel:'H\u00f6rverstehen \u2013 Teil 1'},
-  {id:'hv2',label:'H\u00f6ren 2',icon:'\uD83C\uDFA7',category:'hoerverstehen',part:'teil2',fullLabel:'H\u00f6rverstehen \u2013 Teil 2'},
-  {id:'hv3',label:'H\u00f6ren 3',icon:'\uD83C\uDFA7',category:'hoerverstehen',part:'teil3',fullLabel:'H\u00f6rverstehen \u2013 Teil 3'},
+  {id:'lv1',label:'Lesen 1',icon:'📖',category:'leseverstehen',part:'teil1',fullLabel:'Leseverstehen – Teil 1'},
+  {id:'lv2',label:'Lesen 2',icon:'📖',category:'leseverstehen',part:'teil2',fullLabel:'Leseverstehen – Teil 2'},
+  {id:'lv3',label:'Lesen 3',icon:'📖',category:'leseverstehen',part:'teil3',fullLabel:'Leseverstehen – Teil 3'},
+  {id:'sb1',label:'Sprache 1',icon:'✍️',category:'sprachbausteine',part:'teil1',fullLabel:'Sprachbausteine – Teil 1'},
+  {id:'sb2',label:'Sprache 2',icon:'✍️',category:'sprachbausteine',part:'teil2',fullLabel:'Sprachbausteine – Teil 2'},
+  {id:'hv1',label:'Hören 1',icon:'🎧',category:'hoerverstehen',part:'teil1',fullLabel:'Hörverstehen – Teil 1'},
+  {id:'hv2',label:'Hören 2',icon:'🎧',category:'hoerverstehen',part:'teil2',fullLabel:'Hörverstehen – Teil 2'},
+  {id:'hv3',label:'Hören 3',icon:'🎧',category:'hoerverstehen',part:'teil3',fullLabel:'Hörverstehen – Teil 3'},
 ];
 const SCORING = {lv1:{count:5,points:5},lv2:{count:5,points:5},lv3:{count:10,points:2.5},sb1:{count:10,points:1.5},sb2:{count:10,points:1.5},hv1:{count:5,points:5},hv2:{count:10,points:2.5},hv3:{count:5,points:5}};
 
@@ -500,7 +500,7 @@ const NoteBox=({children})=>(<div style={{background:'var(--yellow-bg)',border:'
 
 // ===== SECTION RENDERERS =====
 const LV1=({data,answers,submitted,onAnswer,exam})=>(<div className="fade-in">
-  <ReadingBox title="\u00dcberschriften">{data.headings.map(h=><div key={h.letter} style={{padding:'3px 0'}}><strong style={{color:'var(--accent2)'}}>{h.letter})</strong> {h.text}</div>)}</ReadingBox>
+  <ReadingBox title="Überschriften">{data.headings.map(h=><div key={h.letter} style={{padding:'3px 0'}}><strong style={{color:'var(--accent2)'}}>{h.letter})</strong> {h.text}</div>)}</ReadingBox>
   <p style={{color:'var(--text2)',marginBottom:16,fontSize:'.88rem'}}>{data.instructions}</p>
   {data.texts.map((text,i)=>{const key=`lv1_${i+1}`,ans=answers[key],correct=getCorrectAnswer(exam,key),rc=!submitted?'':ans===correct?'correct':'wrong';
     return(<QuestionCard key={key} num={i+1} text={text} resultClass={rc}>
@@ -529,30 +529,30 @@ const LV3=({data,answers,submitted,onAnswer,exam})=>(<div className="fade-in">
 </div>);
 
 const SB1=({data,answers,submitted,onAnswer,exam})=>(<div className="fade-in">
-  <ReadingBox title="L\u00fcckentext">{data.readingText.split('\n').map((p,i)=>p?<p key={i} style={{marginBottom:8}}>{p}</p>:<br key={i}/>)}</ReadingBox>
+  <ReadingBox title="Lückentext">{data.readingText.split('\n').map((p,i)=>p?<p key={i} style={{marginBottom:8}}>{p}</p>:<br key={i}/>)}</ReadingBox>
   {data.questions.map(q=>{const key=`sb1_${q.num}`,ans=answers[key],correct=getCorrectAnswer(exam,key),labels=['a','b','c'],rc=!submitted?'':ans===correct?'correct':'wrong';
-    return(<QuestionCard key={key} num={q.num} text={`L\u00fccke (${q.num})`} resultClass={rc}>
+    return(<QuestionCard key={key} num={q.num} text={`Lücke (${q.num})`} resultClass={rc}>
       <div style={{display:'flex',flexDirection:'column',gap:6}}>{q.options.map((opt,j)=>{const v=labels[j];return<OptionBtn key={v} label={v} text={opt} selected={ans===v} correct={submitted&&v===correct} wrong={submitted&&ans===v&&v!==correct} disabled={submitted} onClick={()=>onAnswer(key,v)}/>;})}</div>
       {submitted&&ans!==correct&&<div style={{marginTop:8,fontSize:'.82rem',color:'var(--green)'}}>Richtig: {correct}) {q.options[labels.indexOf(correct)]}</div>}
     </QuestionCard>);})}
 </div>);
 
 const SB2=({data,answers,submitted,onAnswer,exam})=>(<div className="fade-in">
-  <ReadingBox title="L\u00fcckentext">
+  <ReadingBox title="Lückentext">
     {data.readingText.split('\n').map((p,i)=>p?<p key={i} style={{marginBottom:8}}>{p}</p>:<br key={i}/>)}
     {data.wordBank&&<div style={{display:'flex',flexWrap:'wrap',gap:8,marginTop:16,padding:'14px',background:'rgba(255,255,255,0.03)',borderRadius:10}}>
       {data.wordBank.map((w,i)=><span key={i} style={{padding:'4px 12px',borderRadius:8,background:'var(--surface3)',fontSize:'.83rem',fontWeight:500}}><strong style={{color:'var(--accent2)'}}>{String.fromCharCode(65+i)}</strong> {w}</span>)}
     </div>}
   </ReadingBox>
   {data.questions.map((q,i)=>{const key=`sb2_${q.num}`,ans=answers[key],correct=getCorrectAnswer(exam,key),rc=!submitted?'':ans===correct?'correct':'wrong';
-    return(<QuestionCard key={key} num={q.num} text={`L\u00fccke (${q.num})`} resultClass={rc}>
+    return(<QuestionCard key={key} num={q.num} text={`Lücke (${q.num})`} resultClass={rc}>
       <div style={{display:'flex',flexWrap:'wrap',gap:6}}>{data.options.map(opt=><OptionBtn key={opt} label={opt} selected={ans===opt} correct={submitted&&opt===correct} wrong={submitted&&ans===opt&&opt!==correct} disabled={submitted} onClick={()=>onAnswer(key,opt)} compact/>)}</div>
       {submitted&&ans!==correct&&<div style={{marginTop:8,fontSize:'.82rem',color:'var(--green)'}}>Richtig: {correct} ({data.answerWords?data.answerWords[i]:''})</div>}
     </QuestionCard>);})}
 </div>);
 
 const HV=({data,sectionId,answers,submitted,onAnswer,exam})=>(<div className="fade-in">
-  {data.note&&<NoteBox>{'\uD83C\uDFA7'} {data.note}</NoteBox>}
+  {data.note&&<NoteBox>{'🎧'} {data.note}</NoteBox>}
   <p style={{color:'var(--text2)',marginBottom:16,fontSize:'.88rem'}}>{data.instructions}</p>
   {data.questions.map((q,i)=>{const key=`${sectionId}_${q.num}`,ans=answers[key],correct=getCorrectAnswer(exam,key),rc=!submitted?'':ans===correct?'correct':'wrong';
     return(<QuestionCard key={key} num={q.num} text={q.text} resultClass={rc}>
@@ -572,8 +572,8 @@ const Results=({exam,answers,onClose,onRestart})=>{
     {label:'Lesen gesamt',s:{points:lvPts,max:75},sub:true},
     {label:'Sprachbausteine 1',s:scores.sb1},{label:'Sprachbausteine 2',s:scores.sb2},
     {label:'Sprache gesamt',s:{points:sbPts,max:30},sub:true},
-    {label:'H\u00f6rverstehen 1',s:scores.hv1},{label:'H\u00f6rverstehen 2',s:scores.hv2},{label:'H\u00f6rverstehen 3',s:scores.hv3},
-    {label:'H\u00f6ren gesamt',s:{points:hvPts,max:75},sub:true},
+    {label:'Hörverstehen 1',s:scores.hv1},{label:'Hörverstehen 2',s:scores.hv2},{label:'Hörverstehen 3',s:scores.hv3},
+    {label:'Hören gesamt',s:{points:hvPts,max:75},sub:true},
   ];
   return(<div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.7)',backdropFilter:'blur(8px)',zIndex:200,display:'flex',alignItems:'flex-start',justifyContent:'center',overflowY:'auto',padding:20}} onClick={onClose}>
     <div onClick={e=>e.stopPropagation()} style={{background:'var(--surface)',borderRadius:20,padding:'40px 36px',maxWidth:560,width:'100%',marginTop:40,border:'1px solid var(--border)',animation:'slideUp .4s ease'}}>
@@ -584,7 +584,7 @@ const Results=({exam,answers,onClose,onRestart})=>{
         <span style={{fontSize:'.85rem',fontWeight:600,color:pass?'var(--green)':'var(--red)'}}>{pct}%</span>
       </div>
       <div style={{textAlign:'center',padding:'14px',borderRadius:10,fontWeight:700,marginBottom:12,background:pass?'var(--green-bg)':'var(--red-bg)',color:pass?'var(--green)':'var(--red)'}}>
-        {pass?'Bestanden! (\u226560%)':'Nicht bestanden (mind. 60% n\u00f6tig)'}
+        {pass?'Bestanden! (≥60%)':'Nicht bestanden (mind. 60% nötig)'}
       </div>
       <div style={{background:'rgba(255,255,255,0.03)',border:'1px solid var(--border)',borderRadius:10,padding:'14px 18px',marginBottom:20,fontSize:'.82rem',color:'var(--text2)',lineHeight:1.7}}>
         <div style={{fontWeight:600,color:'var(--text)',marginBottom:6}}>Telc B1 Bewertung (Schriftlich)</div>
@@ -617,7 +617,7 @@ const Results=({exam,answers,onClose,onRestart})=>{
 // ===== START SCREEN =====
 const StartScreen=({onStart})=>(<div style={{minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:'40px 20px'}} className="fade-in">
   <div style={{textAlign:'center',marginBottom:48}}>
-    <div style={{fontSize:'3.5rem',marginBottom:16,filter:'drop-shadow(0 0 30px rgba(108,92,231,0.4))'}}>{'\uD83C\uDDE9\uD83C\uDDEA'}</div>
+    <div style={{fontSize:'3.5rem',marginBottom:16,filter:'drop-shadow(0 0 30px rgba(108,92,231,0.4))'}}>{'🇩🇪'}</div>
     <h1 style={{fontSize:'2.4rem',fontWeight:800,background:'linear-gradient(135deg,var(--accent2),var(--accent),#fd79a8)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',marginBottom:8}}>Telc Tester</h1>
     <p style={{color:'var(--text2)',fontSize:'1.05rem',maxWidth:400}}>Wähle einen Übungstest und simuliere die schriftliche Prüfung.</p>
   </div>
@@ -659,7 +659,7 @@ const App=()=>{
   return(<div style={{minHeight:'100vh',display:'flex',flexDirection:'column'}}>
     <header style={{background:'linear-gradient(135deg,rgba(108,92,231,0.15),rgba(108,92,231,0.05))',borderBottom:'1px solid var(--border)',padding:'14px 24px',display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:10,position:'sticky',top:0,zIndex:100,backdropFilter:'blur(16px)'}}>
       <div style={{display:'flex',alignItems:'center',gap:14}}>
-        <button onClick={goHome} style={{background:'var(--surface3)',color:'var(--text)',padding:'6px 14px',borderRadius:8,fontSize:'.82rem',fontWeight:600}}>{'\u2190'} Zurück</button>
+        <button onClick={goHome} style={{background:'var(--surface3)',color:'var(--text)',padding:'6px 14px',borderRadius:8,fontSize:'.82rem',fontWeight:600}}>{'←'} Zurück</button>
         <div><div style={{fontWeight:700,fontSize:'1.05rem'}}>{exam.title}</div><div style={{fontSize:'.8rem',color:'var(--text2)'}}>{exam.subtitle}</div></div>
       </div>
       {!submitted?<button onClick={submitExam} style={{background:'linear-gradient(135deg,var(--accent),#8b5cf6)',color:'#fff',padding:'10px 24px',borderRadius:10,fontWeight:700,fontSize:'.9rem',boxShadow:'0 4px 16px rgba(108,92,231,0.3)'}}>Prüfung abgeben</button>
@@ -689,8 +689,8 @@ const App=()=>{
       {section.startsWith('hv')&&<HV data={data} sectionId={section} answers={answers} submitted={submitted} onAnswer={onAnswer} exam={exam}/>}
 
       <div style={{display:'flex',justifyContent:'space-between',marginTop:32,paddingTop:20,borderTop:'1px solid var(--border)'}}>
-        {SECTIONS.indexOf(sec)>0?<button onClick={()=>navigateTo(SECTIONS[SECTIONS.indexOf(sec)-1].id)} style={{padding:'10px 20px',borderRadius:10,background:'var(--surface3)',color:'var(--text)',fontWeight:600,fontSize:'.88rem'}}>{'\u2190'} {SECTIONS[SECTIONS.indexOf(sec)-1].label}</button>:<div/>}
-        {SECTIONS.indexOf(sec)<SECTIONS.length-1?<button onClick={()=>navigateTo(SECTIONS[SECTIONS.indexOf(sec)+1].id)} style={{padding:'10px 20px',borderRadius:10,background:'var(--accent)',color:'#fff',fontWeight:600,fontSize:'.88rem'}}>{SECTIONS[SECTIONS.indexOf(sec)+1].label} {'\u2192'}</button>
+        {SECTIONS.indexOf(sec)>0?<button onClick={()=>navigateTo(SECTIONS[SECTIONS.indexOf(sec)-1].id)} style={{padding:'10px 20px',borderRadius:10,background:'var(--surface3)',color:'var(--text)',fontWeight:600,fontSize:'.88rem'}}>{'←'} {SECTIONS[SECTIONS.indexOf(sec)-1].label}</button>:<div/>}
+        {SECTIONS.indexOf(sec)<SECTIONS.length-1?<button onClick={()=>navigateTo(SECTIONS[SECTIONS.indexOf(sec)+1].id)} style={{padding:'10px 20px',borderRadius:10,background:'var(--accent)',color:'#fff',fontWeight:600,fontSize:'.88rem'}}>{SECTIONS[SECTIONS.indexOf(sec)+1].label} {'→'}</button>
         :!submitted?<button onClick={submitExam} style={{padding:'10px 20px',borderRadius:10,background:'linear-gradient(135deg,var(--accent),#8b5cf6)',color:'#fff',fontWeight:600,fontSize:'.88rem'}}>Prüfung abgeben</button>:<div/>}
       </div>
     </main>
