@@ -519,7 +519,7 @@ const LV2=({data,answers,submitted,onAnswer,exam})=>(<div className="fade-in">
 </div>);
 
 const LV3=({data,answers,submitted,onAnswer,exam})=>(<div className="fade-in">
-  <NoteBox>Die Anzeigen (a\u2013l) befinden sich im Pr\u00fcfungsbuch. W\u00e4hlen Sie die passende Anzeige oder X.</NoteBox>
+  <NoteBox>Die Anzeigen (a–l) befinden sich im Prüfungsbuch. Wählen Sie die passende Anzeige oder X.</NoteBox>
   <p style={{color:'var(--text2)',marginBottom:16,fontSize:'.88rem'}}>{data.instructions}</p>
   {data.situations.map((sit,i)=>{const key=`lv3_${sit.num}`,ans=answers[key],correct=getCorrectAnswer(exam,key),rc=!submitted?'':ans===correct?'correct':'wrong';
     return(<QuestionCard key={key} num={sit.num} text={sit.text} resultClass={rc}>
@@ -556,8 +556,8 @@ const HV=({data,sectionId,answers,submitted,onAnswer,exam})=>(<div className="fa
   <p style={{color:'var(--text2)',marginBottom:16,fontSize:'.88rem'}}>{data.instructions}</p>
   {data.questions.map((q,i)=>{const key=`${sectionId}_${q.num}`,ans=answers[key],correct=getCorrectAnswer(exam,key),rc=!submitted?'':ans===correct?'correct':'wrong';
     return(<QuestionCard key={key} num={q.num} text={q.text} resultClass={rc}>
-      <div style={{display:'flex',gap:10}}>{['+','-'].map(v=><TFBtn key={v} label={v==='+'?'+ Richtig':'\u2212 Falsch'} value={v} selected={ans===v} correct={submitted&&v===correct} wrong={submitted&&ans===v&&v!==correct} disabled={submitted} onClick={()=>onAnswer(key,v)}/>)}</div>
-      {submitted&&ans!==correct&&<div style={{marginTop:8,fontSize:'.82rem',color:'var(--green)'}}>Richtig: {correct==='+'?'Richtig (+)':'Falsch (\u2212)'}</div>}
+      <div style={{display:'flex',gap:10}}>{['+','-'].map(v=><TFBtn key={v} label={v==='+'?'+ Richtig':'− Falsch'} value={v} selected={ans===v} correct={submitted&&v===correct} wrong={submitted&&ans===v&&v!==correct} disabled={submitted} onClick={()=>onAnswer(key,v)}/>)}</div>
+      {submitted&&ans!==correct&&<div style={{marginTop:8,fontSize:'.82rem',color:'var(--green)'}}>Richtig: {correct==='+'?'Richtig (+)':'Falsch (−)'}</div>}
     </QuestionCard>);})}
 </div>);
 
@@ -588,11 +588,11 @@ const Results=({exam,answers,onClose,onRestart})=>{
       </div>
       <div style={{background:'rgba(255,255,255,0.03)',border:'1px solid var(--border)',borderRadius:10,padding:'14px 18px',marginBottom:20,fontSize:'.82rem',color:'var(--text2)',lineHeight:1.7}}>
         <div style={{fontWeight:600,color:'var(--text)',marginBottom:6}}>Telc B1 Bewertung (Schriftlich)</div>
-        <div>Schriftliche Pr\u00fcfung gesamt: <strong style={{color:'var(--text)'}}>225 Punkte</strong></div>
-        <div>\u2022 Getestet (LV + SB + HV): <strong style={{color:'var(--accent2)'}}>{total} / {testedMax}</strong></div>
-        <div>\u2022 Schriftl. Ausdruck (nicht getestet): <span style={{color:'var(--yellow)'}}>0 / {saMax}</span></div>
-        <div>\u2022 M\u00fcndliche Pr\u00fcfung (75 Pkt.): <span style={{color:'var(--yellow)'}}>nicht enthalten</span></div>
-        <div style={{marginTop:6,borderTop:'1px solid var(--border)',paddingTop:6}}>Bestehen: mind. <strong style={{color:'var(--text)'}}>{passMark} / {writtenMax}</strong> schriftlich (60%) + mind. <strong style={{color:'var(--text)'}}>45 / 75</strong> m\u00fcndlich (60%)</div>
+        <div>Schriftliche Prüfung gesamt: <strong style={{color:'var(--text)'}}>225 Punkte</strong></div>
+        <div>• Getestet (LV + SB + HV): <strong style={{color:'var(--accent2)'}}>{total} / {testedMax}</strong></div>
+        <div>• Schriftl. Ausdruck (nicht getestet): <span style={{color:'var(--yellow)'}}>0 / {saMax}</span></div>
+        <div>• Mündliche Prüfung (75 Pkt.): <span style={{color:'var(--yellow)'}}>nicht enthalten</span></div>
+        <div style={{marginTop:6,borderTop:'1px solid var(--border)',paddingTop:6}}>Bestehen: mind. <strong style={{color:'var(--text)'}}>{passMark} / {writtenMax}</strong> schriftlich (60%) + mind. <strong style={{color:'var(--text)'}}>45 / 75</strong> mündlich (60%)</div>
       </div>
       <div style={{marginBottom:24}}>
         {rows.map((r,i)=>(<div key={i} style={{display:'flex',justifyContent:'space-between',padding:r.sub?'8px 10px':'8px 0',borderBottom:r.sub?'2px solid var(--border)':'1px solid rgba(255,255,255,0.04)',fontWeight:r.sub?700:400,fontSize:'.88rem',background:r.sub?'rgba(108,92,231,0.05)':'transparent',borderRadius:r.sub?6:0,marginBottom:r.sub?8:0}}>
@@ -619,7 +619,7 @@ const StartScreen=({onStart})=>(<div style={{minHeight:'100vh',display:'flex',fl
   <div style={{textAlign:'center',marginBottom:48}}>
     <div style={{fontSize:'3.5rem',marginBottom:16,filter:'drop-shadow(0 0 30px rgba(108,92,231,0.4))'}}>{'\uD83C\uDDE9\uD83C\uDDEA'}</div>
     <h1 style={{fontSize:'2.4rem',fontWeight:800,background:'linear-gradient(135deg,var(--accent2),var(--accent),#fd79a8)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',marginBottom:8}}>Telc Tester</h1>
-    <p style={{color:'var(--text2)',fontSize:'1.05rem',maxWidth:400}}>W\u00e4hle einen \u00dcbungstest und simuliere die schriftliche Pr\u00fcfung.</p>
+    <p style={{color:'var(--text2)',fontSize:'1.05rem',maxWidth:400}}>Wähle einen Übungstest und simuliere die schriftliche Prüfung.</p>
   </div>
   <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(260px,1fr))',gap:16,maxWidth:860,width:'100%'}}>
     {EXAMS.map(exam=>(<button key={exam.id} onClick={()=>onStart(exam.id)} style={{background:'linear-gradient(145deg,rgba(108,92,231,0.08),rgba(108,92,231,0.02))',border:'1px solid rgba(108,92,231,0.2)',borderRadius:16,padding:'28px 24px',textAlign:'left',color:'var(--text)',transition:'all .25s',cursor:'pointer'}}>
@@ -659,10 +659,10 @@ const App=()=>{
   return(<div style={{minHeight:'100vh',display:'flex',flexDirection:'column'}}>
     <header style={{background:'linear-gradient(135deg,rgba(108,92,231,0.15),rgba(108,92,231,0.05))',borderBottom:'1px solid var(--border)',padding:'14px 24px',display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:10,position:'sticky',top:0,zIndex:100,backdropFilter:'blur(16px)'}}>
       <div style={{display:'flex',alignItems:'center',gap:14}}>
-        <button onClick={goHome} style={{background:'var(--surface3)',color:'var(--text)',padding:'6px 14px',borderRadius:8,fontSize:'.82rem',fontWeight:600}}>{'\u2190'} Zur\u00fcck</button>
+        <button onClick={goHome} style={{background:'var(--surface3)',color:'var(--text)',padding:'6px 14px',borderRadius:8,fontSize:'.82rem',fontWeight:600}}>{'\u2190'} Zurück</button>
         <div><div style={{fontWeight:700,fontSize:'1.05rem'}}>{exam.title}</div><div style={{fontSize:'.8rem',color:'var(--text2)'}}>{exam.subtitle}</div></div>
       </div>
-      {!submitted?<button onClick={submitExam} style={{background:'linear-gradient(135deg,var(--accent),#8b5cf6)',color:'#fff',padding:'10px 24px',borderRadius:10,fontWeight:700,fontSize:'.9rem',boxShadow:'0 4px 16px rgba(108,92,231,0.3)'}}>Pr\u00fcfung abgeben</button>
+      {!submitted?<button onClick={submitExam} style={{background:'linear-gradient(135deg,var(--accent),#8b5cf6)',color:'#fff',padding:'10px 24px',borderRadius:10,fontWeight:700,fontSize:'.9rem',boxShadow:'0 4px 16px rgba(108,92,231,0.3)'}}>Prüfung abgeben</button>
       :<button onClick={()=>setShowResults(true)} style={{background:'var(--green)',color:'#fff',padding:'10px 24px',borderRadius:10,fontWeight:700,fontSize:'.9rem'}}>Ergebnis</button>}
     </header>
 
@@ -691,7 +691,7 @@ const App=()=>{
       <div style={{display:'flex',justifyContent:'space-between',marginTop:32,paddingTop:20,borderTop:'1px solid var(--border)'}}>
         {SECTIONS.indexOf(sec)>0?<button onClick={()=>navigateTo(SECTIONS[SECTIONS.indexOf(sec)-1].id)} style={{padding:'10px 20px',borderRadius:10,background:'var(--surface3)',color:'var(--text)',fontWeight:600,fontSize:'.88rem'}}>{'\u2190'} {SECTIONS[SECTIONS.indexOf(sec)-1].label}</button>:<div/>}
         {SECTIONS.indexOf(sec)<SECTIONS.length-1?<button onClick={()=>navigateTo(SECTIONS[SECTIONS.indexOf(sec)+1].id)} style={{padding:'10px 20px',borderRadius:10,background:'var(--accent)',color:'#fff',fontWeight:600,fontSize:'.88rem'}}>{SECTIONS[SECTIONS.indexOf(sec)+1].label} {'\u2192'}</button>
-        :!submitted?<button onClick={submitExam} style={{padding:'10px 20px',borderRadius:10,background:'linear-gradient(135deg,var(--accent),#8b5cf6)',color:'#fff',fontWeight:600,fontSize:'.88rem'}}>Pr\u00fcfung abgeben</button>:<div/>}
+        :!submitted?<button onClick={submitExam} style={{padding:'10px 20px',borderRadius:10,background:'linear-gradient(135deg,var(--accent),#8b5cf6)',color:'#fff',fontWeight:600,fontSize:'.88rem'}}>Prüfung abgeben</button>:<div/>}
       </div>
     </main>
     {showResults&&<Results exam={exam} answers={answers} onClose={()=>setShowResults(false)} onRestart={goHome}/>}
