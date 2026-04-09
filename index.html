@@ -454,7 +454,8 @@ function calcScores(exam,answers){
     const nums=sec.id==='lv1'?Array.from({length:5},(_,i)=>i+1):sec.id==='lv3'?data.situations.map(s=>s.num):data.questions.map(q=>q.num);
     nums.forEach(num=>{const key=`${sec.id}_${num}`;if(answers[key]&&answers[key]===getCorrectAnswer(exam,key))correct++;});
     const pts=correct*sc.points;scores[sec.id]={correct,total:sc.count,points:pts,max:sc.count*sc.points};total+=pts;});
-  return{scores,total,pct:(total/180*100).toFixed(1),pass:total>=108};
+  const writtenMax=225;const testedMax=180;const saMax=45;const passMark=Math.ceil(writtenMax*0.6);
+  return{scores,total,testedMax,writtenMax,saMax,passMark,pct:(total/testedMax*100).toFixed(1),pass:total>=Math.ceil(testedMax*0.6)};
 }
 
 // ===================== COMPONENTS =====================
@@ -562,7 +563,7 @@ const HV=({data,sectionId,answers,submitted,onAnswer,exam})=>(<div className="fa
 
 // ===== RESULTS MODAL =====
 const Results=({exam,answers,onClose,onRestart})=>{
-  const{scores,total,pct,pass}=calcScores(exam,answers);
+  const{scores,total,testedMax,writtenMax,saMax,passMark,pct,pass}=calcScores(exam,answers);
   const lvPts=(scores.lv1?.points||0)+(scores.lv2?.points||0)+(scores.lv3?.points||0);
   const sbPts=(scores.sb1?.points||0)+(scores.sb2?.points||0);
   const hvPts=(scores.hv1?.points||0)+(scores.hv2?.points||0)+(scores.hv3?.points||0);
@@ -577,13 +578,21 @@ const Results=({exam,answers,onClose,onRestart})=>{
   return(<div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.7)',backdropFilter:'blur(8px)',zIndex:200,display:'flex',alignItems:'flex-start',justifyContent:'center',overflowY:'auto',padding:20}} onClick={onClose}>
     <div onClick={e=>e.stopPropagation()} style={{background:'var(--surface)',borderRadius:20,padding:'40px 36px',maxWidth:560,width:'100%',marginTop:40,border:'1px solid var(--border)',animation:'slideUp .4s ease'}}>
       <h2 style={{textAlign:'center',fontSize:'1.5rem',fontWeight:800,marginBottom:28}}>Ergebnis</h2>
-      <div style={{width:150,height:150,borderRadius:'50%',margin:'0 auto 28px',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',background:pass?'var(--green-bg)':'var(--red-bg)',border:`4px solid ${pass?'var(--green)':'var(--red)'}`,animation:'pulse .6s ease'}}>
+      <div style={{width:160,height:160,borderRadius:'50%',margin:'0 auto 24px',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',background:pass?'var(--green-bg)':'var(--red-bg)',border:`4px solid ${pass?'var(--green)':'var(--red)'}`,animation:'pulse .6s ease'}}>
         <span style={{fontSize:'2.2rem',fontWeight:800,color:pass?'var(--green)':'var(--red)'}}>{total}</span>
-        <span style={{fontSize:'.8rem',color:'var(--text2)'}}>/ 180 Punkte</span>
+        <span style={{fontSize:'.78rem',color:'var(--text2)'}}>/ {testedMax} getestet</span>
         <span style={{fontSize:'.85rem',fontWeight:600,color:pass?'var(--green)':'var(--red)'}}>{pct}%</span>
       </div>
-      <div style={{textAlign:'center',padding:'14px',borderRadius:10,fontWeight:700,marginBottom:24,background:pass?'var(--green-bg)':'var(--red-bg)',color:pass?'var(--green)':'var(--red)'}}>
-        {pass?'Bestanden! (\u226560%)':'Nicht bestanden. (\u2265108 Punkte n\u00f6tig)'}
+      <div style={{textAlign:'center',padding:'14px',borderRadius:10,fontWeight:700,marginBottom:12,background:pass?'var(--green-bg)':'var(--red-bg)',color:pass?'var(--green)':'var(--red)'}}>
+        {pass?'Bestanden! (\u226560%)':'Nicht bestanden (mind. 60% n\u00f6tig)'}
+      </div>
+      <div style={{background:'rgba(255,255,255,0.03)',border:'1px solid var(--border)',borderRadius:10,padding:'14px 18px',marginBottom:20,fontSize:'.82rem',color:'var(--text2)',lineHeight:1.7}}>
+        <div style={{fontWeight:600,color:'var(--text)',marginBottom:6}}>Telc B1 Bewertung (Schriftlich)</div>
+        <div>Schriftliche Pr\u00fcfung gesamt: <strong style={{color:'var(--text)'}}>225 Punkte</strong></div>
+        <div>\u2022 Getestet (LV + SB + HV): <strong style={{color:'var(--accent2)'}}>{total} / {testedMax}</strong></div>
+        <div>\u2022 Schriftl. Ausdruck (nicht getestet): <span style={{color:'var(--yellow)'}}>0 / {saMax}</span></div>
+        <div>\u2022 M\u00fcndliche Pr\u00fcfung (75 Pkt.): <span style={{color:'var(--yellow)'}}>nicht enthalten</span></div>
+        <div style={{marginTop:6,borderTop:'1px solid var(--border)',paddingTop:6}}>Bestehen: mind. <strong style={{color:'var(--text)'}}>{passMark} / {writtenMax}</strong> schriftlich (60%) + mind. <strong style={{color:'var(--text)'}}>45 / 75</strong> m\u00fcndlich (60%)</div>
       </div>
       <div style={{marginBottom:24}}>
         {rows.map((r,i)=>(<div key={i} style={{display:'flex',justifyContent:'space-between',padding:r.sub?'8px 10px':'8px 0',borderBottom:r.sub?'2px solid var(--border)':'1px solid rgba(255,255,255,0.04)',fontWeight:r.sub?700:400,fontSize:'.88rem',background:r.sub?'rgba(108,92,231,0.05)':'transparent',borderRadius:r.sub?6:0,marginBottom:r.sub?8:0}}>
@@ -594,7 +603,7 @@ const Results=({exam,answers,onClose,onRestart})=>{
           </span>
         </div>))}
         <div style={{display:'flex',justifyContent:'space-between',padding:'12px 0',fontWeight:800,fontSize:'1rem',borderTop:'2px solid var(--accent)',marginTop:8}}>
-          <span>GESAMT</span><span>{total} / 180</span>
+          <span>Getestet</span><span>{total} / {testedMax}</span>
         </div>
       </div>
       <div style={{display:'flex',gap:12,justifyContent:'center'}}>
@@ -618,7 +627,7 @@ const StartScreen=({onStart})=>(<div style={{minHeight:'100vh',display:'flex',fl
       <div style={{fontSize:'.85rem',color:'var(--text2)',marginBottom:12}}>{exam.subtitle}</div>
       <div style={{display:'flex',gap:8}}>
         <span style={{fontSize:'.75rem',padding:'3px 10px',borderRadius:12,background:'var(--accent-glow)',color:'var(--accent2)'}}>60 Fragen</span>
-        <span style={{fontSize:'.75rem',padding:'3px 10px',borderRadius:12,background:'var(--accent-glow)',color:'var(--accent2)'}}>180 Pkt.</span>
+        <span style={{fontSize:'.75rem',padding:'3px 10px',borderRadius:12,background:'var(--accent-glow)',color:'var(--accent2)'}}>225 Pkt. schriftl.</span>
       </div>
     </button>))}
   </div>
